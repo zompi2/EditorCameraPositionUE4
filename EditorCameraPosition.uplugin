@@ -1,0 +1,29 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0.0",
+	"FriendlyName": "EditorCameraPosition",
+	"Description": "",
+	"Category": "",
+	"CreatedBy": "Damian Nowakowski",
+	"CreatedByURL": "https://zompidev.blogspot.com",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "mailto:zompi2@gmail.com",
+	"CanContainContent": true,
+	"IsBetaVersion": false,
+	"IsExperimentalVersion": false,
+	"Installed": true,
+	"Modules": [
+		{
+			"Name": "EditorCameraPosition",
+			"Type": "Editor",
+			"LoadingPhase": "PreDefault",
+			"WhitelistPlatforms": [
+				"Win64",
+				"Linux",
+				"Mac"
+			]
+		}
+	]
+}
