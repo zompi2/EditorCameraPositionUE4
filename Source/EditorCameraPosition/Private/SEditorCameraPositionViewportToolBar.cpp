@@ -1,4 +1,4 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+// Copyright (c) 2023 Damian Nowakowski. All rights reserved.
 
 #include "SEditorCameraPositionViewportToolBar.h"
 #include "Widgets/Input/SVectorInputBox.h"

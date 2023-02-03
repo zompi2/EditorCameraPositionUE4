@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Damian Nowakowski. All rights reserved.
+// Copyright (c) 2023 Damian Nowakowski. All rights reserved.
 
 using UnrealBuildTool;
 
@@ -8,7 +8,6 @@ public class EditorCameraPosition : ModuleRules
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 
-		PrivateIncludePaths.Add("EditorCameraPosition/Private");
 		PrivateIncludePaths.Add("EditorCameraPosition/Private");
 
 		PublicDependencyModuleNames.AddRange(
@@ -30,7 +29,8 @@ public class EditorCameraPosition : ModuleRules
 				"EditorStyle",
 				"Projects",
 				"LevelEditor",
-				"ApplicationCore"
+				"ApplicationCore",
+				"ToolMenus"
 			}
 		);
 	}

@@ -1,13 +1,9 @@
-// Copyright (c) 2021 Damian Nowakowski. All rights reserved.
+// Copyright (c) 2023 Damian Nowakowski. All rights reserved.
 
 #pragma once
 
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
-
-/**
- * Localization Editor module, which handles Editor object and DockTab creation.
- */
 
 class EDITORCAMERAPOSITION_API FEditorCameraPositionModule : public IModuleInterface
 {
@@ -35,6 +31,15 @@ protected:
 	 * Run some initializations after the Engine has been initialized.
 	 */
 	void OnPostEngineInit();
+
+	void AddViewportToolBarExtension(class FLevelEditorModule* LevelEditor);
+	void AddViewportOptionsExtension(class FLevelEditorModule* LevelEditor);
+
+	void SetIsToolbarVisible(bool bNewIsVisible);
+	bool GetIsToolbarVisible() const;
+	EVisibility GetToolbarVisibility() const;
+
+	void ToggleToolbarVisibility();
 
 private:
 

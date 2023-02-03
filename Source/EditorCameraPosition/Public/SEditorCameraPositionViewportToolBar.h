@@ -1,3 +1,5 @@
+// Copyright (c) 2023 Damian Nowakowski. All rights reserved.
+
 #pragma once
 
 #include "Editor/UnrealEd/Public/SViewportToolBar.h"
