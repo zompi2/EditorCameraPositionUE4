@@ -29,7 +29,8 @@ public class EditorCameraPosition : ModuleRules
                 "UnrealEd",
 				"EditorStyle",
 				"Projects",
-				"LevelEditor"
+				"LevelEditor",
+				"ApplicationCore"
 			}
 		);
 	}

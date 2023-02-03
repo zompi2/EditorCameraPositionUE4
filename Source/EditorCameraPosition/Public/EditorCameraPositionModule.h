@@ -22,12 +22,12 @@ public:
 	TOptional<float> GetLocationY() const;
 	TOptional<float> GetLocationZ() const;
 
-	void SetLocationX(float Value, ETextCommit::Type CommitType);
-	void SetLocationY(float Value, ETextCommit::Type CommitType);
-	void SetLocationZ(float Value, ETextCommit::Type CommitType);
+	void SetLocationX(float Value);
+	void SetLocationY(float Value);
+	void SetLocationZ(float Value);
 
-	bool Tick(float DeltaTime);
-	class UWorld* GetWorld();
+	void OnCopy();
+	void OnPaste();
 
 protected:
 
@@ -38,9 +38,12 @@ protected:
 
 private:
 
+	bool Tick(float DeltaTime);
+	void RefreshViewportLocation();
 	TSharedRef<class SWidget> GetWidget();
-	TSharedPtr<SWidget> Test;
+
 	FVector CamPos;
+
 	FDelegateHandle TickerHandle;
 	FDelegateHandle OnPostEngineInitDelegateHandle;
 };

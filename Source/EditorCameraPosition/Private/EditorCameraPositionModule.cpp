@@ -5,6 +5,9 @@
 #include "LevelEditor.h"
 #include "Misc/MessageDialog.h"
 #include "Containers/Ticker.h"
+#include "Editor.h"
+#include "LevelEditorViewport.h"
+#include "HAL/PlatformApplicationMisc.h"
 
 IMPLEMENT_MODULE(FEditorCameraPositionModule, EditorCameraPosition)
 
@@ -51,10 +54,21 @@ TSharedRef<SWidget> FEditorCameraPositionModule::GetWidget()
 		.X_Raw(this, &FEditorCameraPositionModule::GetLocationX)
 		.Y_Raw(this, &FEditorCameraPositionModule::GetLocationY)
 		.Z_Raw(this, &FEditorCameraPositionModule::GetLocationZ)
-		.OnXCommitted_Raw(this, &FEditorCameraPositionModule::SetLocationX)
-		.OnYCommitted_Raw(this, &FEditorCameraPositionModule::SetLocationY)
-		.OnZCommitted_Raw(this, &FEditorCameraPositionModule::SetLocationZ);
+		.OnXChanged_Raw(this, &FEditorCameraPositionModule::SetLocationX)
+		.OnYChanged_Raw(this, &FEditorCameraPositionModule::SetLocationY)
+		.OnZChanged_Raw(this, &FEditorCameraPositionModule::SetLocationZ)
+		.OnCopy_Raw(this, &FEditorCameraPositionModule::OnCopy)
+		.OnPaste_Raw(this, &FEditorCameraPositionModule::OnPaste);
 
+}
+
+void FEditorCameraPositionModule::RefreshViewportLocation()
+{
+	if (GCurrentLevelEditingViewportClient)
+	{
+		FViewportCameraTransform& ViewTransform = GCurrentLevelEditingViewportClient->GetViewTransform();
+		ViewTransform.SetLocation(CamPos);
+	}
 }
 
 TOptional<float> FEditorCameraPositionModule::GetLocationX() const
@@ -72,37 +86,49 @@ TOptional<float> FEditorCameraPositionModule::GetLocationZ() const
 	return CamPos.Z;
 }
 
-void FEditorCameraPositionModule::SetLocationX(float Value, ETextCommit::Type CommitType)
+void FEditorCameraPositionModule::SetLocationX(float Value)
 {
 	CamPos.X = Value;
+	RefreshViewportLocation();
 }
 
-void FEditorCameraPositionModule::SetLocationY(float Value, ETextCommit::Type CommitType)
+void FEditorCameraPositionModule::SetLocationY(float Value)
 {
 	CamPos.Y = Value;
+	RefreshViewportLocation();
 }
 
-void FEditorCameraPositionModule::SetLocationZ(float Value, ETextCommit::Type CommitType)
+void FEditorCameraPositionModule::SetLocationZ(float Value)
 {
 	CamPos.Z = Value;
+	RefreshViewportLocation();
+}
+
+void FEditorCameraPositionModule::OnCopy()
+{
+	const FString CopyStr = FString::Printf(TEXT("(X=%f,Y=%f,Z=%f)"), CamPos.X, CamPos.Y, CamPos.Z);
+	if (!CopyStr.IsEmpty())
+	{
+		FPlatformApplicationMisc::ClipboardCopy(*CopyStr);
+	}
+}
+
+void FEditorCameraPositionModule::OnPaste()
+{
+	FString PastedText;
+	FPlatformApplicationMisc::ClipboardPaste(PastedText);
+	if (CamPos.InitFromString(PastedText))
+	{
+		RefreshViewportLocation();
+	}
 }
 
 bool FEditorCameraPositionModule::Tick(float DeltaTime)
 {
-	if (UWorld* World = GetWorld()) 
+	if (GCurrentLevelEditingViewportClient)
 	{
-		const TArray<FVector>& LastFramesLoc = World->ViewLocationsRenderedLastFrame;
-		if (LastFramesLoc.Num() > 0)
-		{
-			CamPos.X = FMath::RoundToFloat(LastFramesLoc[0].X);
-			CamPos.Y = FMath::RoundToFloat(LastFramesLoc[0].Y);
-			CamPos.Z = FMath::RoundToFloat(LastFramesLoc[0].Z);
-		}
+		FViewportCameraTransform& ViewTransform = GCurrentLevelEditingViewportClient->GetViewTransform();
+		CamPos = ViewTransform.GetLocation();
 	}
 	return true;
-}
-
-UWorld* FEditorCameraPositionModule::GetWorld()
-{
-	return GEditor ? GEditor->GetEditorWorldContext(false).World() : nullptr;
 }
