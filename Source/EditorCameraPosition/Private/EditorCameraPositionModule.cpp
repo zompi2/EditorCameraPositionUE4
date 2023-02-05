@@ -13,6 +13,12 @@
 
 IMPLEMENT_MODULE(FEditorCameraPositionModule, EditorCameraPosition)
 
+namespace ECPConfig
+{
+	const TCHAR* ConfigSection = TEXT("EditorCameraPositionPlugin");
+	const TCHAR* ConfigIsToolBarVisible = TEXT("IsToolBarVisible");
+}
+
 void FEditorCameraPositionModule::StartupModule()
 {
 	FEditorCameraPositionCommands::Register();
@@ -31,34 +37,37 @@ void FEditorCameraPositionModule::OnPostEngineInit()
 {
 	if ((IsRunningCommandlet() == false) && (IsRunningGame() == false) && FSlateApplication::IsInitialized())
 	{
-		if (FLevelEditorModule* LevelEditor = FModuleManager::LoadModulePtr<FLevelEditorModule>(TEXT("LevelEditor")))
-		{
-			AddViewportToolBarExtension(LevelEditor);
-			AddViewportOptionsExtension(LevelEditor);
-		}
+		bIsToolBarVisible = false;
+		GConfig->GetBool(ECPConfig::ConfigSection, ECPConfig::ConfigIsToolBarVisible, bIsToolBarVisible, GEditorIni);
+
+		AddViewportToolBarExtension();
+		AddViewportOptionsExtension();
 	}
 }
 
-void FEditorCameraPositionModule::AddViewportToolBarExtension(FLevelEditorModule* LevelEditor)
+void FEditorCameraPositionModule::AddViewportToolBarExtension()
 {
-	TSharedPtr<FUICommandList> Commands = MakeShareable(new FUICommandList());
-	TSharedPtr<FExtender> ToolbarExtender = MakeShareable(new FExtender);
-	ToolbarExtender->AddToolBarExtension(
-		"CameraSpeed",
-		EExtensionHook::After,
-		Commands,
-		FToolBarExtensionDelegate::CreateLambda([this](FToolBarBuilder& ToolbarBuilder)
+	if (FLevelEditorModule* LevelEditor = FModuleManager::LoadModulePtr<FLevelEditorModule>(TEXT("LevelEditor")))
+	{
+		TSharedPtr<FUICommandList> Commands = MakeShareable(new FUICommandList());
+		TSharedPtr<FExtender> ToolbarExtender = MakeShareable(new FExtender);
+		ToolbarExtender->AddToolBarExtension(
+			"CameraSpeed",
+			EExtensionHook::After,
+			Commands,
+			FToolBarExtensionDelegate::CreateLambda([this](FToolBarBuilder& ToolbarBuilder)
 		{
 			ToolbarBuilder.AddSeparator();
 			ToolbarBuilder.BeginSection("CameraPosition");
 			ToolbarBuilder.AddWidget(GetWidget());
 			ToolbarBuilder.EndSection();
 		})
-	);
-	LevelEditor->GetToolBarExtensibilityManager()->AddExtender(ToolbarExtender);
+		);
+		LevelEditor->GetToolBarExtensibilityManager()->AddExtender(ToolbarExtender);
+	}
 }
 
-void FEditorCameraPositionModule::AddViewportOptionsExtension(FLevelEditorModule* LevelEditor)
+void FEditorCameraPositionModule::AddViewportOptionsExtension()
 {
 	TSharedPtr<FUICommandInfo> Command = FEditorCameraPositionCommands::Get().ToggleShowCameraPosWidget;
 	UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.LevelViewportToolBar.Options");
@@ -83,53 +92,6 @@ void FEditorCameraPositionModule::AddViewportOptionsExtension(FLevelEditorModule
 			Action,
 			Command->GetUserInterfaceType()
 		);	
-	}
-}
-
-void FEditorCameraPositionModule::SetIsToolbarVisible(bool bNewIsVisible)
-{
-	GConfig->SetBool(TEXT("EditorCameraPositionPlugin"), TEXT("CameraPositionInViewport"), bNewIsVisible, GEditorIni);
-	GConfig->Flush(false);
-}
-
-bool FEditorCameraPositionModule::GetIsToolbarVisible() const
-{
-	bool bIsVisible = false;
-	GConfig->GetBool(TEXT("EditorCameraPositionPlugin"), TEXT("CameraPositionInViewport"), bIsVisible, GEditorIni);
-	return bIsVisible;
-}
-
-EVisibility FEditorCameraPositionModule::GetToolbarVisibility() const
-{
-	return GetIsToolbarVisible() ? EVisibility::Visible : EVisibility::Collapsed;
-}
-
-void FEditorCameraPositionModule::ToggleToolbarVisibility()
-{
-	SetIsToolbarVisible(!GetIsToolbarVisible());
-}
-
-TSharedRef<SWidget> FEditorCameraPositionModule::GetWidget()
-{
-	return SNew(SEditorCameraPositionViewportToolBar)
-		.Visibility_Raw(this, &FEditorCameraPositionModule::GetToolbarVisibility)
-		.X_Raw(this, &FEditorCameraPositionModule::GetLocationX)
-		.Y_Raw(this, &FEditorCameraPositionModule::GetLocationY)
-		.Z_Raw(this, &FEditorCameraPositionModule::GetLocationZ)
-		.OnXChanged_Raw(this, &FEditorCameraPositionModule::SetLocationX)
-		.OnYChanged_Raw(this, &FEditorCameraPositionModule::SetLocationY)
-		.OnZChanged_Raw(this, &FEditorCameraPositionModule::SetLocationZ)
-		.OnCopy_Raw(this, &FEditorCameraPositionModule::OnCopy)
-		.OnPaste_Raw(this, &FEditorCameraPositionModule::OnPaste);
-
-}
-
-void FEditorCameraPositionModule::RefreshViewportLocation()
-{
-	if (GCurrentLevelEditingViewportClient)
-	{
-		FViewportCameraTransform& ViewTransform = GCurrentLevelEditingViewportClient->GetViewTransform();
-		ViewTransform.SetLocation(CamPos);
 	}
 }
 
@@ -185,6 +147,28 @@ void FEditorCameraPositionModule::OnPaste()
 	}
 }
 
+void FEditorCameraPositionModule::SetIsToolbarVisible(bool bNewIsVisible)
+{
+	bIsToolBarVisible = bNewIsVisible;
+	GConfig->SetBool(ECPConfig::ConfigSection, ECPConfig::ConfigIsToolBarVisible, bIsToolBarVisible, GEditorIni);
+	GConfig->Flush(false);
+}
+
+bool FEditorCameraPositionModule::GetIsToolbarVisible() const
+{
+	return bIsToolBarVisible;
+}
+
+EVisibility FEditorCameraPositionModule::GetToolbarVisibility() const
+{
+	return bIsToolBarVisible ? EVisibility::Visible : EVisibility::Collapsed;
+}
+
+void FEditorCameraPositionModule::ToggleToolbarVisibility()
+{
+	SetIsToolbarVisible(!GetIsToolbarVisible());
+}
+
 bool FEditorCameraPositionModule::Tick(float DeltaTime)
 {
 	if (GCurrentLevelEditingViewportClient)
@@ -193,4 +177,28 @@ bool FEditorCameraPositionModule::Tick(float DeltaTime)
 		CamPos = ViewTransform.GetLocation();
 	}
 	return true;
+}
+
+void FEditorCameraPositionModule::RefreshViewportLocation()
+{
+	if (GCurrentLevelEditingViewportClient)
+	{
+		FViewportCameraTransform& ViewTransform = GCurrentLevelEditingViewportClient->GetViewTransform();
+		ViewTransform.SetLocation(CamPos);
+	}
+}
+
+TSharedRef<SWidget> FEditorCameraPositionModule::GetWidget()
+{
+	return SNew(SEditorCameraPositionViewportToolBar)
+		.Visibility_Raw(this, &FEditorCameraPositionModule::GetToolbarVisibility)
+		.X_Raw(this, &FEditorCameraPositionModule::GetLocationX)
+		.Y_Raw(this, &FEditorCameraPositionModule::GetLocationY)
+		.Z_Raw(this, &FEditorCameraPositionModule::GetLocationZ)
+		.OnXChanged_Raw(this, &FEditorCameraPositionModule::SetLocationX)
+		.OnYChanged_Raw(this, &FEditorCameraPositionModule::SetLocationY)
+		.OnZChanged_Raw(this, &FEditorCameraPositionModule::SetLocationZ)
+		.OnCopy_Raw(this, &FEditorCameraPositionModule::OnCopy)
+		.OnPaste_Raw(this, &FEditorCameraPositionModule::OnPaste);
+
 }

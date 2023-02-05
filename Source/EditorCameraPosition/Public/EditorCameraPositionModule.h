@@ -8,11 +8,15 @@
 class EDITORCAMERAPOSITION_API FEditorCameraPositionModule : public IModuleInterface
 {
 
-public:
+protected:
 
-	// IModuleInterface implementation
 	void StartupModule() override;
 	void ShutdownModule() override;
+
+	void OnPostEngineInit();
+
+	void AddViewportToolBarExtension();
+	void AddViewportOptionsExtension();
 
 	TOptional<float> GetLocationX() const;
 	TOptional<float> GetLocationY() const;
@@ -25,20 +29,9 @@ public:
 	void OnCopy();
 	void OnPaste();
 
-protected:
-
-	/**
-	 * Run some initializations after the Engine has been initialized.
-	 */
-	void OnPostEngineInit();
-
-	void AddViewportToolBarExtension(class FLevelEditorModule* LevelEditor);
-	void AddViewportOptionsExtension(class FLevelEditorModule* LevelEditor);
-
 	void SetIsToolbarVisible(bool bNewIsVisible);
 	bool GetIsToolbarVisible() const;
 	EVisibility GetToolbarVisibility() const;
-
 	void ToggleToolbarVisibility();
 
 private:
@@ -48,6 +41,7 @@ private:
 	TSharedRef<class SWidget> GetWidget();
 
 	FVector CamPos;
+	bool bIsToolBarVisible;
 
 	FDelegateHandle TickerHandle;
 	FDelegateHandle OnPostEngineInitDelegateHandle;
