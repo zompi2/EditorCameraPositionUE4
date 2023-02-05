@@ -18,6 +18,6 @@ Yes it is!
 
 ### Anything else?
 
-Just hoping you can find it useful. 
-Cheers! 
-<3
+Just hoping you can find it useful.  
+Cheers!  
+<3  
