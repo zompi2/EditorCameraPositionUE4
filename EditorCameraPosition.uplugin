@@ -3,7 +3,7 @@
 	"Version": 1,
 	"VersionName": "1.0.0",
 	"FriendlyName": "EditorCameraPosition",
-	"Description": "Simple tool to display and set camera position in editor viewport",
+	"Description": "Simple tool that displays and sets camera position in editor viewport",
 	"Category": "Cameras",
 	"CreatedBy": "Damian Nowakowski",
 	"CreatedByURL": "https://zompidev.blogspot.com",
