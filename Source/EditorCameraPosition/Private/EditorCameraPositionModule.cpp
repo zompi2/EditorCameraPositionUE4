@@ -23,12 +23,12 @@ void FEditorCameraPositionModule::StartupModule()
 {
 	FEditorCameraPositionCommands::Register();
 	OnPostEngineInitDelegateHandle = FCoreDelegates::OnPostEngineInit.AddRaw(this, &FEditorCameraPositionModule::OnPostEngineInit);
-	TickerHandle = FTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateRaw(this, &FEditorCameraPositionModule::Tick), 0.0f);
+	TickerHandle = FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateRaw(this, &FEditorCameraPositionModule::Tick), 0.0f);
 }
 
 void FEditorCameraPositionModule::ShutdownModule()
 {
-	FTicker::GetCoreTicker().RemoveTicker(TickerHandle);
+	FTSTicker::GetCoreTicker().RemoveTicker(TickerHandle);
 	FCoreDelegates::OnPostEngineInit.Remove(OnPostEngineInitDelegateHandle);
 	FEditorCameraPositionCommands::Unregister();
 }

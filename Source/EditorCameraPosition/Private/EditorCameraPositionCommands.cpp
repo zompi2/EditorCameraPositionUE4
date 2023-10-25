@@ -5,7 +5,7 @@
 #define LOCTEXT_NAMESPACE "EditorCameraPosition"
 
 FEditorCameraPositionCommands::FEditorCameraPositionCommands()
-: TCommands<FEditorCameraPositionCommands>(TEXT("Editor Camera Position Tool Commands"), FText::FromString(TEXT("Commands to control Editor Camera Position Tool")), NAME_None, FEditorStyle::GetStyleSetName())
+: TCommands<FEditorCameraPositionCommands>(TEXT("Editor Camera Position Tool Commands"), FText::FromString(TEXT("Commands to control Editor Camera Position Tool")), NAME_None, FAppStyle::GetAppStyleSetName())
 {}
 
 void FEditorCameraPositionCommands::RegisterCommands()

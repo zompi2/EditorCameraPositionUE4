@@ -43,6 +43,6 @@ private:
 	FVector CamPos;
 	bool bIsToolBarVisible;
 
-	FDelegateHandle TickerHandle;
+	FTSTicker::FDelegateHandle TickerHandle;
 	FDelegateHandle OnPostEngineInitDelegateHandle;
 };
