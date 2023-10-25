@@ -12,7 +12,7 @@ It is also useful if you want to share a specific world coordinates to a teammat
 
 ## Does it work in UE5?
 
-Yes it is!
+Yes it is! (Tested on UE5.3.1)
 
 ![ue5cam](https://user-images.githubusercontent.com/7863125/216811335-516ccac8-5e84-425b-afb1-555ae9ba6cae.png)
 
