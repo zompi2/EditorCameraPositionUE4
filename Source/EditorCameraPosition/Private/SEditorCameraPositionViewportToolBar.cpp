@@ -16,7 +16,9 @@ void SEditorCameraPositionViewportToolBar::Construct(const FArguments& Args)
 		[
 			SNew(SVectorInputBox)
 			.bColorAxisLabels(true)
+#if (ENGINE_MAJOR_VERSION == 4)
 			.AllowResponsiveLayout(true)
+#endif
 			.AllowSpin(true)
 			.SpinDelta(1)
 			.X(Args._X)
