@@ -50,6 +50,4 @@ private:
 #endif
 
 	FDelegateHandle OnPostEngineInitDelegateHandle;
-
-	TSharedRef<FExtender> OnExtendLevelViewportOptionMenu(const TSharedRef<FUICommandList> CommandList);
 };
