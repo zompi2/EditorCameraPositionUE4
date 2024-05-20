@@ -82,25 +82,24 @@ void FEditorCameraPositionModule::AddViewportOptionsExtension()
 	UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.LevelViewportToolBar.Options");
 	if (Menu)
 	{
-		FToolMenuSection& Section = Menu->FindOrAddSection("LevelViewportViewportOptions2");
-
-		FToolUIAction Action;
-		Action.ExecuteAction.BindLambda([this](const FToolMenuContext& MenuContext)
+		FUIAction Action;
+		Action.ExecuteAction.BindLambda([this]()
 		{
 			ToggleToolbarVisibility();
 		});
-		Action.GetActionCheckState.BindLambda([this](const FToolMenuContext& MenuContext) -> ECheckBoxState
+		Action.GetActionCheckState.BindLambda([this]() -> ECheckBoxState
 		{
 			return GetIsToolbarVisible() ? ECheckBoxState::Checked : ECheckBoxState::Unchecked;
 		});
-		Section.AddMenuEntry(
-			"ToggleEditorCameraPosition",
-			Command->GetLabel(),
-			Command->GetDescription(),
-			Command->GetIcon(),
-			Action,
-			Command->GetUserInterfaceType()
-		);	
+
+		FToolMenuSection& Section = Menu->FindOrAddSection("LevelViewportViewportOptions2");
+		Section.AddMenuEntry(Command);
+
+		if (FLevelEditorModule* LevelEditor = FModuleManager::LoadModulePtr<FLevelEditorModule>(TEXT("LevelEditor")))
+		{
+			TSharedRef<FUICommandList> GlobalLevelEditorActions = LevelEditor->GetGlobalLevelEditorActions();
+			GlobalLevelEditorActions->MapAction(Command, Action);
+		}
 	}
 }
 
