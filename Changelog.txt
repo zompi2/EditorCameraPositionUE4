@@ -1,8 +1,9 @@
 ###### 1.0.3
 * Moved editor config to the default ini file. The project based ini file edition doesn't work for UE5.4.
+* Truncate camera position in the camera position box.
 
 ###### 1.0.2
-* Fixed the keyboard shortcut to toggle camera position box
+* Fixed the keyboard shortcut to toggle camera position box.
 
 ###### 1.0.1
-* Fixes for UE5
+* Fixes for UE5.
