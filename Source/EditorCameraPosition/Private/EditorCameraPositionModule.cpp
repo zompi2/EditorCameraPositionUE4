@@ -2,6 +2,7 @@
 
 #include "EditorCameraPositionModule.h"
 #include "EditorCameraPositionCommands.h"
+#include "EditorCameraPositionSettings.h"
 #include "SEditorCameraPositionViewportToolBar.h"
 
 #include "Editor.h"
@@ -12,12 +13,6 @@
 #include "ToolMenus.h"
 
 IMPLEMENT_MODULE(FEditorCameraPositionModule, EditorCameraPosition)
-
-namespace ECPConfig
-{
-	const TCHAR* ConfigSection = TEXT("EditorCameraPositionPlugin");
-	const TCHAR* ConfigIsToolBarVisible = TEXT("IsToolBarVisible");
-}
 
 void FEditorCameraPositionModule::StartupModule()
 {
@@ -46,8 +41,7 @@ void FEditorCameraPositionModule::OnPostEngineInit()
 {
 	if ((IsRunningCommandlet() == false) && (IsRunningGame() == false) && FSlateApplication::IsInitialized())
 	{
-		bIsToolBarVisible = false;
-		GConfig->GetBool(ECPConfig::ConfigSection, ECPConfig::ConfigIsToolBarVisible, bIsToolBarVisible, GEditorIni);
+		bIsToolBarVisible = UEditorCameraPositionSettings::GetIsToolBarVisible();
 
 		AddViewportToolBarExtension();
 		AddViewportOptionsExtension();
@@ -91,6 +85,10 @@ void FEditorCameraPositionModule::AddViewportOptionsExtension()
 		{
 			return GetIsToolbarVisible() ? ECheckBoxState::Checked : ECheckBoxState::Unchecked;
 		});
+		Action.CanExecuteAction.BindLambda([this]() -> bool
+		{
+			return true;
+		});
 
 		FToolMenuSection& Section = Menu->FindOrAddSection("LevelViewportViewportOptions2");
 		Section.AddMenuEntry(Command);
@@ -105,17 +103,17 @@ void FEditorCameraPositionModule::AddViewportOptionsExtension()
 
 TOptional<float> FEditorCameraPositionModule::GetLocationX() const
 {
-	return CamPos.X;
+	return FMath::TruncToFloat(CamPos.X);
 }
 
 TOptional<float> FEditorCameraPositionModule::GetLocationY() const
 {
-	return CamPos.Y;
+	return FMath::TruncToFloat(CamPos.Y);
 }
 
 TOptional<float> FEditorCameraPositionModule::GetLocationZ() const
 {
-	return CamPos.Z;
+	return FMath::TruncToFloat(CamPos.Z);
 }
 
 void FEditorCameraPositionModule::SetLocationX(float Value)
@@ -158,8 +156,7 @@ void FEditorCameraPositionModule::OnPaste()
 void FEditorCameraPositionModule::SetIsToolbarVisible(bool bNewIsVisible)
 {
 	bIsToolBarVisible = bNewIsVisible;
-	GConfig->SetBool(ECPConfig::ConfigSection, ECPConfig::ConfigIsToolBarVisible, bIsToolBarVisible, GEditorIni);
-	GConfig->Flush(false);
+	UEditorCameraPositionSettings::SetIsToolBarVisible(bIsToolBarVisible);
 }
 
 bool FEditorCameraPositionModule::GetIsToolbarVisible() const
