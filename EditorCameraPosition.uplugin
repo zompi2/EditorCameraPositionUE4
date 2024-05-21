@@ -8,7 +8,7 @@
 	"CreatedBy": "Damian Nowakowski",
 	"CreatedByURL": "https://zompidev.blogspot.com",
 	"DocsURL": "https://github.com/zompi2/EditorCameraPositionUE4",
-	"MarketplaceURL": "",
+	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/9864b623739f4fbab30f4d877b137fc9",
 	"SupportURL": "mailto:zompi2@gmail.com",
 	"CanContainContent": false,
 	"IsBetaVersion": false,
@@ -19,10 +19,8 @@
 			"Name": "EditorCameraPosition",
 			"Type": "Editor",
 			"LoadingPhase": "PreDefault",
-			"WhitelistPlatforms": [
-				"Win64",
-				"Linux",
-				"Mac"
+			"PlatformAllowList": [
+				"Win64"
 			]
 		}
 	]
