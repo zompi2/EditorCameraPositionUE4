@@ -21,4 +21,3 @@ void UEditorCameraPositionSettings::SetIsToolBarVisible(bool bInIsVisible)
 	Settings->UpdateDefaultConfigFile();
 #endif
 }
-
