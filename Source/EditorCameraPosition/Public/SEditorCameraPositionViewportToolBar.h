@@ -3,6 +3,7 @@
 #pragma once
 
 #include "Editor/UnrealEd/Public/SViewportToolBar.h"
+#include "EditorCameraPositionWorldCoordsType.h"
 
 DECLARE_DELEGATE(FOnCameraPosCopyPasteEvent);
 
@@ -11,12 +12,12 @@ class EDITORCAMERAPOSITION_API SEditorCameraPositionViewportToolBar : public SVi
 
 public:
 	SLATE_BEGIN_ARGS(SEditorCameraPositionViewportToolBar) {}
-		SLATE_ATTRIBUTE(TOptional<float>, X)
-		SLATE_ATTRIBUTE(TOptional<float>, Y)
-		SLATE_ATTRIBUTE(TOptional<float>, Z)
-		SLATE_EVENT(FOnFloatValueChanged, OnXChanged)
-		SLATE_EVENT(FOnFloatValueChanged, OnYChanged)
-		SLATE_EVENT(FOnFloatValueChanged, OnZChanged)
+		SLATE_ATTRIBUTE(TOptional<WorldCoordsType>, X)
+		SLATE_ATTRIBUTE(TOptional<WorldCoordsType>, Y)
+		SLATE_ATTRIBUTE(TOptional<WorldCoordsType>, Z)
+		SLATE_EVENT(OnValueChangedDelegateType, OnXChanged)
+		SLATE_EVENT(OnValueChangedDelegateType, OnYChanged)
+		SLATE_EVENT(OnValueChangedDelegateType, OnZChanged)
 		SLATE_EVENT(FOnCameraPosCopyPasteEvent, OnCopy)
 		SLATE_EVENT(FOnCameraPosCopyPasteEvent, OnPaste)
 	SLATE_END_ARGS()

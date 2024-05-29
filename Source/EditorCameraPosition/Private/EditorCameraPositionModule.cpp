@@ -101,34 +101,34 @@ void FEditorCameraPositionModule::AddViewportOptionsExtension()
 	}
 }
 
-TOptional<float> FEditorCameraPositionModule::GetLocationX() const
+TOptional<WorldCoordsType> FEditorCameraPositionModule::GetLocationX() const
 {
 	return FMath::TruncToFloat(CamPos.X);
 }
 
-TOptional<float> FEditorCameraPositionModule::GetLocationY() const
+TOptional<WorldCoordsType> FEditorCameraPositionModule::GetLocationY() const
 {
 	return FMath::TruncToFloat(CamPos.Y);
 }
 
-TOptional<float> FEditorCameraPositionModule::GetLocationZ() const
+TOptional<WorldCoordsType> FEditorCameraPositionModule::GetLocationZ() const
 {
 	return FMath::TruncToFloat(CamPos.Z);
 }
 
-void FEditorCameraPositionModule::SetLocationX(float Value)
+void FEditorCameraPositionModule::SetLocationX(WorldCoordsType Value)
 {
 	CamPos.X = Value;
 	RefreshViewportLocation();
 }
 
-void FEditorCameraPositionModule::SetLocationY(float Value)
+void FEditorCameraPositionModule::SetLocationY(WorldCoordsType Value)
 {
 	CamPos.Y = Value;
 	RefreshViewportLocation();
 }
 
-void FEditorCameraPositionModule::SetLocationZ(float Value)
+void FEditorCameraPositionModule::SetLocationZ(WorldCoordsType Value)
 {
 	CamPos.Z = Value;
 	RefreshViewportLocation();
@@ -136,8 +136,8 @@ void FEditorCameraPositionModule::SetLocationZ(float Value)
 
 void FEditorCameraPositionModule::OnCopy()
 {
-	const FString CopyStr = FString::Printf(TEXT("(X=%f,Y=%f,Z=%f)"), CamPos.X, CamPos.Y, CamPos.Z);
-	if (!CopyStr.IsEmpty())
+	const FString CopyStr = FString::Printf(TEXT("(%s)"), *CamPos.ToString());
+	if (CopyStr.IsEmpty() == false)
 	{
 		FPlatformApplicationMisc::ClipboardCopy(*CopyStr);
 	}
@@ -178,7 +178,7 @@ bool FEditorCameraPositionModule::Tick(float DeltaTime)
 {
 	if (GCurrentLevelEditingViewportClient)
 	{
-		FViewportCameraTransform& ViewTransform = GCurrentLevelEditingViewportClient->GetViewTransform();
+		const FViewportCameraTransform& ViewTransform = GCurrentLevelEditingViewportClient->GetViewTransform();
 		CamPos = ViewTransform.GetLocation();
 	}
 	return true;
@@ -205,5 +205,4 @@ TSharedRef<SWidget> FEditorCameraPositionModule::GetWidget()
 		.OnZChanged_Raw(this, &FEditorCameraPositionModule::SetLocationZ)
 		.OnCopy_Raw(this, &FEditorCameraPositionModule::OnCopy)
 		.OnPaste_Raw(this, &FEditorCameraPositionModule::OnPaste);
-
 }

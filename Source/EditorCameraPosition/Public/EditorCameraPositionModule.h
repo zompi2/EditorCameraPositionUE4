@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
+#include "EditorCameraPositionWorldCoordsType.h"
 
 class EDITORCAMERAPOSITION_API FEditorCameraPositionModule : public IModuleInterface
 {
@@ -18,13 +19,13 @@ protected:
 	void AddViewportToolBarExtension();
 	void AddViewportOptionsExtension();
 
-	TOptional<float> GetLocationX() const;
-	TOptional<float> GetLocationY() const;
-	TOptional<float> GetLocationZ() const;
+	TOptional<WorldCoordsType> GetLocationX() const;
+	TOptional<WorldCoordsType> GetLocationY() const;
+	TOptional<WorldCoordsType> GetLocationZ() const;
 
-	void SetLocationX(float Value);
-	void SetLocationY(float Value);
-	void SetLocationZ(float Value);
+	void SetLocationX(WorldCoordsType Value);
+	void SetLocationY(WorldCoordsType Value);
+	void SetLocationZ(WorldCoordsType Value);
 
 	void OnCopy();
 	void OnPaste();

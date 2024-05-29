@@ -1,7 +1,6 @@
 // Copyright (c) 2024 Damian Nowakowski. All rights reserved.
 
 #include "SEditorCameraPositionViewportToolBar.h"
-#include "Widgets/Input/SVectorInputBox.h"
 
 void SEditorCameraPositionViewportToolBar::Construct(const FArguments& Args)
 {
@@ -14,7 +13,7 @@ void SEditorCameraPositionViewportToolBar::Construct(const FArguments& Args)
 		.WidthOverride(256)
 		.VAlign(VAlign_Center)
 		[
-			SNew(SVectorInputBox)
+			SNew(VectorInputBoxType)
 			.bColorAxisLabels(true)
 #if (ENGINE_MAJOR_VERSION == 4)
 			.AllowResponsiveLayout(true)
