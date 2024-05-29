@@ -2,7 +2,9 @@
 
 This is a simple plugin for Unreal Engine that displays the camera position in the editor's viewport. It can also set and copy-paste the camera position.
 
-![ezgif com-gif-maker](https://user-images.githubusercontent.com/7863125/216810877-b243d023-0bd4-4ffb-a295-0b71b0830132.gif)
+https://github.com/zompi2/EditorCameraPositionUE4/assets/7863125/f9744a1c-215a-43fc-a26f-2b529380d420
+
+It works on UE4.27, UE5.2, UE5.3 and UE5.4 (or at least I tested it on these versions)
 
 ## Why is it useful?
 
@@ -10,11 +12,17 @@ It is useful when you when you have a QA team that reports you a bug in specific
 
 It is also useful if you want to share a specific world coordinates to a teammate without getting coordinates of a specific object.
 
-## Does it work in UE5?
+## FAQ
 
-Yes it is! (Tested on UE5.3.1)
+**But you can save your fav camera positions using Ctrl+Numer**  
+This plugin is not for saving your favourite camera positions. It's for a situation when you have to quickly jump to a specific coordinates, given to you by someone else (usually the QA).
 
-![ue5cam](https://user-images.githubusercontent.com/7863125/216811335-516ccac8-5e84-425b-afb1-555ae9ba6cae.png)
+**But you can just spawn cube, set it's location to the desired location, press F and delete that cube**  
+Yeah... I know... but for me it was annoying to do it every time I needed that simple functionality. It saves you that few seconds :)
+
+## Marketplace!
+
+This plugin can be downloaded from the Unreal Engine Marketplace! Here's **[the link to it](https://www.unrealengine.com/marketplace/en-US/product/9864b623739f4fbab30f4d877b137fc9).**
 
 ## Extra Links
 
