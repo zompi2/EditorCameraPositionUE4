@@ -1,3 +1,6 @@
+###### 1.0.4
+* Added support for large world coordinates.
+
 ###### 1.0.3
 * Moved editor config to the default ini file. The project based ini file edition doesn't work for UE5.4.
 * Truncate camera position in the camera position box.
