@@ -22,7 +22,8 @@ Yeah... I know... but for me it was annoying to do it every time I needed that s
 
 ## Marketplace!
 
-This plugin can be downloaded from the Unreal Engine Marketplace! Here's **[the link to it](https://www.unrealengine.com/marketplace/en-US/product/9864b623739f4fbab30f4d877b137fc9).**
+This plugin can be downloaded from the Unreal Engine Marketplace! Here's **[the link to it](https://www.unrealengine.com/marketplace/en-US/product/9864b623739f4fbab30f4d877b137fc9).**  
+The version of this plugin on a marketplace is **1.0.4**.
 
 ## Extra Links
 
