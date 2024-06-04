@@ -8,7 +8,7 @@ It works on UE4.27, UE5.2, UE5.3 and UE5.4 (or at least I tested it on these ver
 
 ## Why is it useful?
 
-It is useful when you when you have a QA team that reports you a bug in specific location. Finding this place in the editor on a huge map with only coordinates is tricky. With this tool you can simply copy-paste this location and go directly to a place where the problem occurs. 
+It is useful when a QA team reports you a bug in specific location. Finding this place in the editor on a huge map with only coordinates is tricky. With this tool you can simply copy-paste this location and go directly to a place where the problem occurs. 
 
 It is also useful if you want to share a specific world coordinates to a teammate without getting coordinates of a specific object.
 
@@ -18,7 +18,7 @@ It is also useful if you want to share a specific world coordinates to a teammat
 This plugin is not for saving your favourite camera positions. It's for a situation when you have to quickly jump to a specific coordinates, given to you by someone else (usually the QA).
 
 **But you can just spawn cube, set it's location to the desired location, press F and delete that cube**  
-Yeah... I know... but for me it was annoying to do it every time I needed that simple functionality. It saves you that few seconds :)
+Yeah... I know... but for me it was annoying to do it every time I needed that simple functionality. It saves you that few seconds every time :)
 
 ## Marketplace!
 
