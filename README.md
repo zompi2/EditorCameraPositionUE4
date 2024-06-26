@@ -23,7 +23,8 @@ Yeah... I know... but for me it was annoying to do it every time I needed that s
 ## Marketplace!
 
 This plugin can be downloaded from the Unreal Engine Marketplace! Here's **[the link to it](https://www.unrealengine.com/marketplace/en-US/product/9864b623739f4fbab30f4d877b137fc9).**  
-The version of this plugin on a marketplace is **1.0.4**.
+The version of this plugin on a marketplace is **1.0.5**.
+For UE4.27 you can download the prebuilt plugin from **[here](https://github.com/zompi2/EditorCameraPositionUE4/raw/packs/Packs/EditorCameraPosition-1.0.5-4.27.zip)**
 
 ## Extra Links
 
