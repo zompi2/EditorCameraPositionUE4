@@ -20,11 +20,14 @@ This plugin is not for saving your favourite camera positions. It's for a situat
 **But you can just spawn cube, set it's location to the desired location, press F and delete that cube**  
 Yeah... I know... but for me it was annoying to do it every time I needed that simple functionality. It saves you that few seconds every time :)
 
+**Does it work for camera position when piloting actors?**  
+Yes it does!
+
 ## Marketplace!
 
 This plugin can be downloaded from the Unreal Engine Marketplace! Here's **[the link to it](https://www.unrealengine.com/marketplace/en-US/product/9864b623739f4fbab30f4d877b137fc9).**  
-The version of this plugin on a marketplace is **1.0.5**.
-For UE4.27 you can download the prebuilt plugin from **[here](https://github.com/zompi2/EditorCameraPositionUE4/raw/packs/Packs/EditorCameraPosition-1.0.5-4.27.zip)**
+The version of this plugin on a marketplace is **1.0.5**.  
+Unreal Marketplace doesn't support plugins for UE4. For UE4.27 you can download the prebuilt plugin from **[here](https://github.com/zompi2/EditorCameraPositionUE4/raw/packs/Packs/EditorCameraPosition-4.27.zip).**
 
 ## Extra Links
 
