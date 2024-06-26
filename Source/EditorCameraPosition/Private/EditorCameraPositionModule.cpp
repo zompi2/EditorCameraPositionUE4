@@ -189,7 +189,19 @@ void FEditorCameraPositionModule::RefreshViewportLocation()
 	if (GCurrentLevelEditingViewportClient)
 	{
 		FViewportCameraTransform& ViewTransform = GCurrentLevelEditingViewportClient->GetViewTransform();
-		ViewTransform.SetLocation(CamPos);
+
+		UCameraComponent* CamComp = GCurrentLevelEditingViewportClient->GetCameraComponentForView();
+		AActor* CamOwner = CamComp ? CamComp->GetOwner() : nullptr;
+		if (CamOwner)
+		{
+			const FVector NewOwnerPos = CamPos - (ViewTransform.GetLocation() - CamOwner->GetActorLocation());
+			ViewTransform.SetLocation(CamPos);
+			CamOwner->SetActorLocation(NewOwnerPos);
+		}
+		else
+		{
+			ViewTransform.SetLocation(CamPos);
+		}
 	}
 }
 
