@@ -12,6 +12,16 @@ It is useful when a QA team reports you a bug in specific location. Finding this
 
 It is also useful if you want to share a specific world coordinates to a teammate without getting coordinates of a specific object.
 
+## Blueprint nodes
+
+If you need a position of the editor viewport's camera in your Blueprint Utility Widget there are Blueprint nodes that can help you with it:
+
+#### Get Editor Camera Position
+![geteditorcameraposbp](https://github.com/user-attachments/assets/c94d94f3-14aa-4780-8ec3-5cf5c0594ae7)
+
+#### Set Editor Camera Position
+![seteditorcameraposition](https://github.com/user-attachments/assets/2ab1834e-f33c-4133-acc1-8db642d17110)
+
 ## FAQ
 
 **But you can save your fav camera positions using Ctrl+Numer**  
@@ -40,3 +50,5 @@ Unreal Marketplace doesn't support plugins for UE4. For UE4.27 you can download 
 Just hoping you can find it useful.  
 Cheers!  
 <3  
+
+

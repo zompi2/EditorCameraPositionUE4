@@ -3,6 +3,7 @@
 #include "EditorCameraPositionModule.h"
 #include "EditorCameraPositionCommands.h"
 #include "EditorCameraPositionSettings.h"
+#include "EditorCameraPositionUtils.h"
 #include "SEditorCameraPositionViewportToolBar.h"
 
 #include "Editor.h"
@@ -176,33 +177,13 @@ void FEditorCameraPositionModule::ToggleToolbarVisibility()
 
 bool FEditorCameraPositionModule::Tick(float DeltaTime)
 {
-	if (GCurrentLevelEditingViewportClient)
-	{
-		const FViewportCameraTransform& ViewTransform = GCurrentLevelEditingViewportClient->GetViewTransform();
-		CamPos = ViewTransform.GetLocation();
-	}
+	CamPos = UEditorCameraPositionUtils::GetEditorCameraPosition();
 	return true;
 }
 
 void FEditorCameraPositionModule::RefreshViewportLocation()
 {
-	if (GCurrentLevelEditingViewportClient)
-	{
-		FViewportCameraTransform& ViewTransform = GCurrentLevelEditingViewportClient->GetViewTransform();
-
-		UCameraComponent* CamComp = GCurrentLevelEditingViewportClient->GetCameraComponentForView();
-		AActor* CamOwner = CamComp ? CamComp->GetOwner() : nullptr;
-		if (CamOwner)
-		{
-			const FVector NewOwnerPos = CamPos - (ViewTransform.GetLocation() - CamOwner->GetActorLocation());
-			ViewTransform.SetLocation(CamPos);
-			CamOwner->SetActorLocation(NewOwnerPos);
-		}
-		else
-		{
-			ViewTransform.SetLocation(CamPos);
-		}
-	}
+	UEditorCameraPositionUtils::SetEditorCameraPosition(CamPos);
 }
 
 TSharedRef<SWidget> FEditorCameraPositionModule::GetWidget()

@@ -1,3 +1,6 @@
+###### 1.0.6
+* GetEditorCameraPosition and SetEditorCameraPosition Blueprint functions for Editor Utility Blueprints added.
+
 ###### 1.0.5
 * Fixed setting up coordinates when piloting camera.
 
