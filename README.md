@@ -39,12 +39,6 @@ This plugin can be downloaded from the Unreal Engine Marketplace! Here's **[the 
 The version of this plugin on a marketplace is **1.0.6**.  
 Unreal Marketplace doesn't support plugins for UE4. For UE4.27 you can download the prebuilt plugin from **[here](https://github.com/zompi2/EditorCameraPositionUE4/raw/packs/Packs/EditorCameraPosition-4.27.zip).**
 
-## Extra Links
-
-* [Unreal Engine Forum](https://forums.unrealengine.com/t/plugin-editor-camera-position/764078)
-* [Blog Entry](https://zompidev.blogspot.com/2023/03/editor-camera-position-plugin-for-ue4.html)
-* [Reddit Post](https://www.reddit.com/r/unrealengine/comments/10u8rjx/nobody_asked_for_this_but_this_is_a_plugin_that)
-
 ## Anything else?
 
 Just hoping you can find it useful.  
