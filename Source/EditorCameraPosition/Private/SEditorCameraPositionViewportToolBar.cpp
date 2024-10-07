@@ -11,21 +11,32 @@ void SEditorCameraPositionViewportToolBar::Construct(const FArguments& Args)
 	[
 		SNew(SBox)
 		.WidthOverride(256)
-		.VAlign(VAlign_Center)
+		.HeightOverride(0)
+		.VAlign(VAlign_Top)
 		[
-			SNew(VectorInputBoxType)
-			.bColorAxisLabels(true)
+			SNew(SVerticalBox)
+				+SVerticalBox::Slot()
+				.AutoHeight()
+				[
+					SNew(VectorInputBoxType)
+						.bColorAxisLabels(true)
 #if (ENGINE_MAJOR_VERSION == 4)
-			.AllowResponsiveLayout(true)
+						.AllowResponsiveLayout(true)
 #endif
-			.AllowSpin(true)
-			.SpinDelta(1)
-			.X(Args._X)
-			.Y(Args._Y)
-			.Z(Args._Z)
-			.OnXChanged(Args._OnXChanged)
-			.OnYChanged(Args._OnYChanged)
-			.OnZChanged(Args._OnZChanged)
+						.AllowSpin(true)
+						.SpinDelta(1)
+						.X(Args._X)
+						.Y(Args._Y)
+						.Z(Args._Z)
+						.OnXChanged(Args._OnXChanged)
+						.OnYChanged(Args._OnYChanged)
+						.OnZChanged(Args._OnZChanged)
+				]
+				+SVerticalBox::Slot()
+				.AutoHeight()
+				[
+					SNew(VectorInputBoxType)
+				]
 		]
 	];
 }
