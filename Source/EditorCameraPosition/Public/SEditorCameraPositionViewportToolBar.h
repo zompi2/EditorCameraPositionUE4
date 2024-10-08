@@ -2,34 +2,22 @@
 
 #pragma once
 
-#include "Editor/UnrealEd/Public/SViewportToolBar.h"
-#include "EditorCameraPositionWorldCoordsType.h"
+#include "SEditorCopyPasteBoxWidget.h"
 
-DECLARE_DELEGATE(FOnCameraPosCopyPasteEvent);
-
-class EDITORCAMERAPOSITION_API SEditorCameraPositionViewportToolBar : public SViewportToolBar
+class EDITORCAMERAPOSITION_API SEditorCameraPositionViewportToolBar : public SEditorCopyPasteBoxWidget
 {
 
 public:
 	SLATE_BEGIN_ARGS(SEditorCameraPositionViewportToolBar) {}
-		SLATE_ATTRIBUTE(TOptional<WorldCoordsType>, X)
-		SLATE_ATTRIBUTE(TOptional<WorldCoordsType>, Y)
-		SLATE_ATTRIBUTE(TOptional<WorldCoordsType>, Z)
-		SLATE_EVENT(OnValueChangedDelegateType, OnXChanged)
-		SLATE_EVENT(OnValueChangedDelegateType, OnYChanged)
-		SLATE_EVENT(OnValueChangedDelegateType, OnZChanged)
-		SLATE_EVENT(FOnCameraPosCopyPasteEvent, OnCopy)
-		SLATE_EVENT(FOnCameraPosCopyPasteEvent, OnPaste)
+		SLATE_ATTRIBUTE(TOptional<VectorValueType>, X)
+		SLATE_ATTRIBUTE(TOptional<VectorValueType>, Y)
+		SLATE_ATTRIBUTE(TOptional<VectorValueType>, Z)
+		SLATE_EVENT(OnVectorValueChangedDelegateType, OnXChanged)
+		SLATE_EVENT(OnVectorValueChangedDelegateType, OnYChanged)
+		SLATE_EVENT(OnVectorValueChangedDelegateType, OnZChanged)
+		SLATE_EVENT(FOnCameraPosOrRotCopyPasteEvent, OnCopy)
+		SLATE_EVENT(FOnCameraPosOrRotCopyPasteEvent, OnPaste)
 	SLATE_END_ARGS()
 
-	FOnCameraPosCopyPasteEvent OnCopy;
-	FOnCameraPosCopyPasteEvent OnPaste;
-
 	void Construct(const FArguments& Args);
-
-protected:
-	FReply OnMouseButtonDown(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent) override;
-
-private:
-	void CreateContextMenu(const FVector2D& mousePosition);
 };

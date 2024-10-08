@@ -4,13 +4,24 @@
 
 #include "Runtime/Launch/Resources/Version.h"
 #include "Widgets/Input/SVectorInputBox.h"
+#include "Widgets/Input/SRotatorInputBox.h"
 
-using WorldCoordsType = decltype(FVector::X);
+DECLARE_DELEGATE(FOnCameraPosOrRotCopyPasteEvent);
 
 #if (ENGINE_MAJOR_VERSION == 5)
-	using VectorInputBoxType = SNumericVectorInputBox<WorldCoordsType>;
-	using OnValueChangedDelegateType = SNumericVectorInputBox<WorldCoordsType>::FOnNumericValueChanged;
+	using VectorValueType = FVector::FReal;
+	using VectorInputBoxType = SNumericVectorInputBox<VectorValueType>;
+	using OnVectorValueChangedDelegateType = SNumericVectorInputBox<VectorValueType>::FOnNumericValueChanged;
+
+	using RotatorValueType = FRotator::FReal;
+	using RotatorInputBoxType = SNumericRotatorInputBox<RotatorValueType>;
+	using OnRotatorValueChangedDelegateType = SNumericRotatorInputBox<RotatorValueType>::FOnNumericValueChanged;
 #else
+	using VectorValueType = float;
 	using VectorInputBoxType = SVectorInputBox;
-	using OnValueChangedDelegateType = FOnFloatValueChanged;
+	using OnVectorValueChangedDelegateType = FOnFloatValueChanged;
+
+	using RotatorValueType = float;
+	using RotatorInputBoxType = SRotatorInputBox;
+	using OnRotatorValueChangedDelegateType = FOnFloatValueChanged;
 #endif

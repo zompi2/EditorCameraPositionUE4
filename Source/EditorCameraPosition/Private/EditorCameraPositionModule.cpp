@@ -5,6 +5,7 @@
 #include "EditorCameraPositionSettings.h"
 #include "EditorCameraPositionUtils.h"
 #include "SEditorCameraPositionViewportToolBar.h"
+#include "SEditorCameraViewportToolBar.h"
 
 #include "Editor.h"
 #include "LevelEditor.h"
@@ -102,40 +103,40 @@ void FEditorCameraPositionModule::AddViewportOptionsExtension()
 	}
 }
 
-TOptional<WorldCoordsType> FEditorCameraPositionModule::GetLocationX() const
+TOptional<VectorValueType> FEditorCameraPositionModule::GetLocationX() const
 {
 	return FMath::TruncToFloat(CamPos.X);
 }
 
-TOptional<WorldCoordsType> FEditorCameraPositionModule::GetLocationY() const
+TOptional<VectorValueType> FEditorCameraPositionModule::GetLocationY() const
 {
 	return FMath::TruncToFloat(CamPos.Y);
 }
 
-TOptional<WorldCoordsType> FEditorCameraPositionModule::GetLocationZ() const
+TOptional<VectorValueType> FEditorCameraPositionModule::GetLocationZ() const
 {
 	return FMath::TruncToFloat(CamPos.Z);
 }
 
-void FEditorCameraPositionModule::SetLocationX(WorldCoordsType Value)
+void FEditorCameraPositionModule::SetLocationX(VectorValueType Value)
 {
 	CamPos.X = Value;
 	RefreshViewportLocation();
 }
 
-void FEditorCameraPositionModule::SetLocationY(WorldCoordsType Value)
+void FEditorCameraPositionModule::SetLocationY(VectorValueType Value)
 {
 	CamPos.Y = Value;
 	RefreshViewportLocation();
 }
 
-void FEditorCameraPositionModule::SetLocationZ(WorldCoordsType Value)
+void FEditorCameraPositionModule::SetLocationZ(VectorValueType Value)
 {
 	CamPos.Z = Value;
 	RefreshViewportLocation();
 }
 
-void FEditorCameraPositionModule::OnCopy()
+void FEditorCameraPositionModule::OnLocationCopy()
 {
 	const FString CopyStr = FString::Printf(TEXT("(%s)"), *CamPos.ToString());
 	if (CopyStr.IsEmpty() == false)
@@ -144,13 +145,65 @@ void FEditorCameraPositionModule::OnCopy()
 	}
 }
 
-void FEditorCameraPositionModule::OnPaste()
+void FEditorCameraPositionModule::OnLocationPaste()
 {
 	FString PastedText;
 	FPlatformApplicationMisc::ClipboardPaste(PastedText);
 	if (CamPos.InitFromString(PastedText))
 	{
 		RefreshViewportLocation();
+	}
+}
+
+TOptional<RotatorValueType> FEditorCameraPositionModule::GetRotationRoll() const
+{
+	return FMath::TruncToFloat(CamRot.Roll);
+}
+
+TOptional<RotatorValueType> FEditorCameraPositionModule::GetRotationPitch() const
+{
+	return FMath::TruncToFloat(CamRot.Pitch);
+}
+
+TOptional<RotatorValueType> FEditorCameraPositionModule::GetRotationYaw() const
+{
+	return FMath::TruncToFloat(CamRot.Yaw);
+}
+
+void FEditorCameraPositionModule::SetRotationRoll(RotatorValueType Value)
+{
+	CamRot.Roll = Value;
+	RefreshViewportRotation();
+}
+
+void FEditorCameraPositionModule::SetRotationPitch(RotatorValueType Value)
+{
+	CamRot.Pitch = Value;
+	RefreshViewportRotation();
+}
+
+void FEditorCameraPositionModule::SetRotationYaw(RotatorValueType Value)
+{
+	CamRot.Yaw = Value;
+	RefreshViewportRotation();
+}
+
+void FEditorCameraPositionModule::OnRotationCopy()
+{
+	const FString CopyStr = FString::Printf(TEXT("(%s)"), *CamRot.ToString());
+	if (CopyStr.IsEmpty() == false)
+	{
+		FPlatformApplicationMisc::ClipboardCopy(*CopyStr);
+	}
+}
+
+void FEditorCameraPositionModule::OnRotationPaste()
+{
+	FString PastedText;
+	FPlatformApplicationMisc::ClipboardPaste(PastedText);
+	if (CamRot.InitFromString(PastedText))
+	{
+		RefreshViewportRotation();
 	}
 }
 
@@ -178,6 +231,7 @@ void FEditorCameraPositionModule::ToggleToolbarVisibility()
 bool FEditorCameraPositionModule::Tick(float DeltaTime)
 {
 	CamPos = UEditorCameraPositionUtils::GetEditorCameraPosition();
+	CamRot = UEditorCameraPositionUtils::GetEditorCameraRotation();
 	return true;
 }
 
@@ -186,16 +240,29 @@ void FEditorCameraPositionModule::RefreshViewportLocation()
 	UEditorCameraPositionUtils::SetEditorCameraPosition(CamPos);
 }
 
+void FEditorCameraPositionModule::RefreshViewportRotation()
+{
+	UEditorCameraPositionUtils::SetEditorCameraRotation(CamRot);
+}
+
 TSharedRef<SWidget> FEditorCameraPositionModule::GetWidget()
 {
-	return SNew(SEditorCameraPositionViewportToolBar)
+	return SNew(SEditorCameraViewportToolBar)
 		.Visibility_Raw(this, &FEditorCameraPositionModule::GetToolbarVisibility)
 		.X_Raw(this, &FEditorCameraPositionModule::GetLocationX)
 		.Y_Raw(this, &FEditorCameraPositionModule::GetLocationY)
 		.Z_Raw(this, &FEditorCameraPositionModule::GetLocationZ)
+		.Roll_Raw(this, &FEditorCameraPositionModule::GetRotationRoll)
+		.Pitch_Raw(this, &FEditorCameraPositionModule::GetRotationPitch)
+		.Yaw_Raw(this, &FEditorCameraPositionModule::GetRotationYaw)
 		.OnXChanged_Raw(this, &FEditorCameraPositionModule::SetLocationX)
 		.OnYChanged_Raw(this, &FEditorCameraPositionModule::SetLocationY)
 		.OnZChanged_Raw(this, &FEditorCameraPositionModule::SetLocationZ)
-		.OnCopy_Raw(this, &FEditorCameraPositionModule::OnCopy)
-		.OnPaste_Raw(this, &FEditorCameraPositionModule::OnPaste);
+		.OnRollChanged_Raw(this, &FEditorCameraPositionModule::SetRotationRoll)
+		.OnPitchChanged_Raw(this, &FEditorCameraPositionModule::SetRotationPitch)
+		.OnYawChanged_Raw(this, &FEditorCameraPositionModule::SetRotationYaw)
+		.OnLocationCopy_Raw(this, &FEditorCameraPositionModule::OnLocationCopy)
+		.OnLocationPaste_Raw(this, &FEditorCameraPositionModule::OnLocationPaste)
+		.OnRotationCopy_Raw(this, &FEditorCameraPositionModule::OnRotationCopy)
+		.OnRotationPaste_Raw(this, &FEditorCameraPositionModule::OnRotationPaste);
 }

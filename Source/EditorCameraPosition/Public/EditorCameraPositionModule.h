@@ -19,16 +19,27 @@ protected:
 	void AddViewportToolBarExtension();
 	void AddViewportOptionsExtension();
 
-	TOptional<WorldCoordsType> GetLocationX() const;
-	TOptional<WorldCoordsType> GetLocationY() const;
-	TOptional<WorldCoordsType> GetLocationZ() const;
+	TOptional<VectorValueType> GetLocationX() const;
+	TOptional<VectorValueType> GetLocationY() const;
+	TOptional<VectorValueType> GetLocationZ() const;
 
-	void SetLocationX(WorldCoordsType Value);
-	void SetLocationY(WorldCoordsType Value);
-	void SetLocationZ(WorldCoordsType Value);
+	void SetLocationX(VectorValueType Value);
+	void SetLocationY(VectorValueType Value);
+	void SetLocationZ(VectorValueType Value);
 
-	void OnCopy();
-	void OnPaste();
+	void OnLocationCopy();
+	void OnLocationPaste();
+
+	TOptional<RotatorValueType> GetRotationRoll() const;
+	TOptional<RotatorValueType> GetRotationPitch() const;
+	TOptional<RotatorValueType> GetRotationYaw() const;
+
+	void SetRotationRoll(RotatorValueType Value);
+	void SetRotationPitch(RotatorValueType Value);
+	void SetRotationYaw(RotatorValueType Value);
+
+	void OnRotationCopy();
+	void OnRotationPaste();
 
 	void SetIsToolbarVisible(bool bNewIsVisible);
 	bool GetIsToolbarVisible() const;
@@ -39,9 +50,11 @@ private:
 
 	bool Tick(float DeltaTime);
 	void RefreshViewportLocation();
+	void RefreshViewportRotation();
 	TSharedRef<class SWidget> GetWidget();
 
 	FVector CamPos;
+	FRotator CamRot;
 	bool bIsToolBarVisible;
 
 #if (ENGINE_MAJOR_VERSION == 5)
