@@ -17,8 +17,6 @@
 
 IMPLEMENT_MODULE(FEditorCameraPositionModule, EditorCameraPosition)
 
-UE_DISABLE_OPTIMIZATION
-
 void FEditorCameraPositionModule::StartupModule()
 {
 	FEditorCameraPositionCommands::Register();
@@ -375,5 +373,3 @@ TSharedRef<SWidget> FEditorCameraPositionModule::GetWidget()
 		.OnRotationCopy_Raw(this, &FEditorCameraPositionModule::OnRotationCopy)
 		.OnRotationPaste_Raw(this, &FEditorCameraPositionModule::OnRotationPaste);
 }
-
-UE_ENABLE_OPTIMIZATION
