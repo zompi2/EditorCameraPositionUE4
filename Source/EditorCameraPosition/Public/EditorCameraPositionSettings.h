@@ -3,6 +3,8 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Engine/DeveloperSettings.h"
+#include "EditorCameraPositionTypes.h"
 #include "EditorCameraPositionSettings.generated.h"
 
 /**
@@ -10,17 +12,45 @@
  */
 
 UCLASS(config = Editor, defaultconfig)
-class EDITORCAMERAPOSITION_API UEditorCameraPositionSettings : public UObject
+class EDITORCAMERAPOSITION_API UEditorCameraPositionSettings : public UDeveloperSettings
 {
     GENERATED_BODY()
 
 public:
 
-	static bool GetIsToolBarVisible();
-	static void SetIsToolBarVisible(bool bInIsVisible);
+	static const UEditorCameraPositionSettings* Get();
+
+	static bool GetIsCameraPositionToolBarEnabled();
+	static void SetIsCameraPositionToolBarEnabled(bool bInIsVisible);
+
+	static bool GetIsCameraRotationToolBarEnabled();
+	static void SetIsCameraRotationToolBarEnabled(bool bInIsVisible);
+
+	// UDeveloperSettings implementation
+	FName GetContainerName() const override;
+	FName GetCategoryName() const override;
+	FName GetSectionName() const override;
+	FText GetSectionText() const override;
+	FText GetSectionDescription() const override;
+	// UDeveloperSettings implementation
+
+	UPROPERTY(config, EditAnywhere)
+	bool bEnableEditorCameraPosition = true;
+
+	UPROPERTY(config, EditAnywhere)
+	bool bEnableEditorCameraRotation = true;
+
+	UPROPERTY(config, EditAnywhere)
+	EEditorCameraPositionTruncType CameraPositionTrunc = EEditorCameraPositionTruncType::TwoDecimals;
+
+	UPROPERTY(config, EditAnywhere)
+	EEditorCameraPositionTruncType CameraRotationTrunc = EEditorCameraPositionTruncType::TwoDecimals;
 
 private:
 
 	UPROPERTY(config)
-	bool bIsToolBarVisible = false;
+	bool bIsCameraPositionToolBarEnabled = false;
+
+	UPROPERTY(config)
+	bool bIsCameraRotationToolBarEnabled = false;
 };

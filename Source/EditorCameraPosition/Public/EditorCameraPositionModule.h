@@ -17,7 +17,8 @@ protected:
 	void OnPostEngineInit();
 
 	void AddViewportToolBarExtension();
-	void AddViewportOptionsExtension();
+	void AddViewportCameraPositionOptionExtension();
+	void AddViewportCameraRotationOptionExtension();
 
 	TOptional<VectorValueType> GetLocationX() const;
 	TOptional<VectorValueType> GetLocationY() const;
@@ -41,21 +42,32 @@ protected:
 	void OnRotationCopy();
 	void OnRotationPaste();
 
-	void SetIsToolbarVisible(bool bNewIsVisible);
-	bool GetIsToolbarVisible() const;
+	void SetIsCameraPositionToolBarEnabled(bool bNewIsVisible);
+	bool GetIsCameraPositionToolBarEnabled() const;
+	void ToggleCameraPositionToolbarEnabled();
+	EVisibility GetCameraPositionToolBarVisibility() const;
+
+	void SetIsCameraRotationToolBarEnabled(bool bNewIsVisible);
+	bool GetIsCameraRotationToolBarEnabled() const;
+	void ToggleCameraRotationToolbarEnabled();
+	EVisibility GetCameraRotationToolBarVisibility() const;
+
 	EVisibility GetToolbarVisibility() const;
-	void ToggleToolbarVisibility();
 
 private:
 
 	bool Tick(float DeltaTime);
 	void RefreshViewportLocation();
 	void RefreshViewportRotation();
+	void RefreshToolbarVisibility();
+	TOptional<VectorValueType> TruncPosition(VectorValueType InValue) const;
+	TOptional<RotatorValueType> TruncRotation(RotatorValueType InValue) const;
 	TSharedRef<class SWidget> GetWidget();
 
 	FVector CamPos;
 	FRotator CamRot;
-	bool bIsToolBarVisible;
+	bool bIsCamPosToolbarVisible = true;
+	bool bIsCamRotToolbarVisible = true;
 
 #if (ENGINE_MAJOR_VERSION == 5)
 	FTSTicker::FDelegateHandle TickerHandle;

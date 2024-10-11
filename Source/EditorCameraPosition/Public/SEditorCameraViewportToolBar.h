@@ -10,9 +10,11 @@ class EDITORCAMERAPOSITION_API SEditorCameraViewportToolBar : public SViewportTo
 
 public:
 	SLATE_BEGIN_ARGS(SEditorCameraViewportToolBar) {}
+		SLATE_ATTRIBUTE(EVisibility, CameraPositionVisibility)
 		SLATE_ATTRIBUTE(TOptional<VectorValueType>, X)
 		SLATE_ATTRIBUTE(TOptional<VectorValueType>, Y)
 		SLATE_ATTRIBUTE(TOptional<VectorValueType>, Z)
+		SLATE_ATTRIBUTE(EVisibility, CameraRotationVisibility)
 		SLATE_ATTRIBUTE(TOptional<RotatorValueType>, Roll)
 		SLATE_ATTRIBUTE(TOptional<RotatorValueType>, Pitch)
 		SLATE_ATTRIBUTE(TOptional<RotatorValueType>, Yaw)
