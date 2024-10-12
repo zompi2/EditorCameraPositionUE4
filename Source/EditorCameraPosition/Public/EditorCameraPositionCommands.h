@@ -15,4 +15,5 @@ public:
 public:
 
 	TSharedPtr<FUICommandInfo> ToggleShowCameraPosWidget;
+	TSharedPtr<FUICommandInfo> ToggleShowCameraRotWidget;
 };

@@ -35,3 +35,34 @@ void UEditorCameraPositionUtils::SetEditorCameraPosition(const FVector& NewEdito
 		}
 	}
 }
+
+FRotator UEditorCameraPositionUtils::GetEditorCameraRotation()
+{
+	if (GCurrentLevelEditingViewportClient)
+	{
+		const FViewportCameraTransform& ViewTransform = GCurrentLevelEditingViewportClient->GetViewTransform();
+		return ViewTransform.GetRotation();
+	}
+	return FRotator::ZeroRotator;
+}
+
+void UEditorCameraPositionUtils::SetEditorCameraRotation(const FRotator& NewEditorCameraRotation)
+{
+	if (GCurrentLevelEditingViewportClient)
+	{
+		FViewportCameraTransform& ViewTransform = GCurrentLevelEditingViewportClient->GetViewTransform();
+
+		UCameraComponent* CamComp = GCurrentLevelEditingViewportClient->GetCameraComponentForView();
+		AActor* CamOwner = CamComp ? CamComp->GetOwner() : nullptr;
+		if (CamOwner)
+		{
+			const FRotator NewOwnerRot = NewEditorCameraRotation - (ViewTransform.GetRotation() - CamOwner->GetActorRotation());
+			ViewTransform.SetRotation(NewEditorCameraRotation);
+			CamOwner->SetActorRotation(NewOwnerRot);
+		}
+		else
+		{
+			ViewTransform.SetRotation(NewEditorCameraRotation);
+		}
+	}
+}

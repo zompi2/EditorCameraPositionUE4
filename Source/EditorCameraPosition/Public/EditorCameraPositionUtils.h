@@ -18,4 +18,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Editor Camera Position")
 	static void SetEditorCameraPosition(const FVector& NewEditorCameraPosition);
+
+	UFUNCTION(BlueprintPure, Category = "Editor Camera Position")
+	static FRotator GetEditorCameraRotation();
+
+	UFUNCTION(BlueprintCallable, Category = "Editor Camera Position")
+	static void SetEditorCameraRotation(const FRotator& NewEditorCameraRotation);
 };

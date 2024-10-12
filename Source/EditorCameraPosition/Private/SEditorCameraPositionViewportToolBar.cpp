@@ -9,11 +9,7 @@ void SEditorCameraPositionViewportToolBar::Construct(const FArguments& Args)
 
 	ChildSlot
 	[
-		SNew(SBox)
-		.WidthOverride(256)
-		.VAlign(VAlign_Center)
-		[
-			SNew(VectorInputBoxType)
+		SNew(VectorInputBoxType)
 			.bColorAxisLabels(true)
 #if (ENGINE_MAJOR_VERSION == 4)
 			.AllowResponsiveLayout(true)
@@ -26,50 +22,5 @@ void SEditorCameraPositionViewportToolBar::Construct(const FArguments& Args)
 			.OnXChanged(Args._OnXChanged)
 			.OnYChanged(Args._OnYChanged)
 			.OnZChanged(Args._OnZChanged)
-		]
 	];
-}
-
-FReply SEditorCameraPositionViewportToolBar::OnMouseButtonDown(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent)
-{
-	if (MouseEvent.GetEffectingButton() == EKeys::RightMouseButton)
-	{
-		CreateContextMenu(MouseEvent.GetScreenSpacePosition());
-		return FReply::Handled();
-	}
-	return FReply::Unhandled();
-}
-
-void SEditorCameraPositionViewportToolBar::CreateContextMenu(const FVector2D& MousePosition)
-{
-	FUIAction CopyAction = FUIAction(FExecuteAction::CreateLambda([this]()
-	{
-		OnCopy.ExecuteIfBound();
-	}));
-
-	FUIAction PasteAction = FUIAction(FExecuteAction::CreateLambda([this]()
-	{
-		OnPaste.ExecuteIfBound();
-	}));
-
-	FMenuBuilder MenuBuilder(true, nullptr);
-
-	MenuBuilder.AddMenuEntry(
-		NSLOCTEXT("PropertyView", "CopyProperty", "Copy"),
-		NSLOCTEXT("PropertyView", "CopyProperty_ToolTip", "Copy this property value"),
-		FSlateIcon(FCoreStyle::Get().GetStyleSetName(), "GenericCommands.Copy"),
-		CopyAction);
-
-	MenuBuilder.AddMenuEntry(
-		NSLOCTEXT("PropertyView", "PasteProperty", "Paste"),
-		NSLOCTEXT("PropertyView", "PasteProperty_ToolTip", "Paste the copied value here"),
-		FSlateIcon(FCoreStyle::Get().GetStyleSetName(), "GenericCommands.Paste"),
-		PasteAction);
-
-	FSlateApplication::Get().PushMenu(
-		SharedThis(this),
-		FWidgetPath(),
-		MenuBuilder.MakeWidget(),
-		MousePosition,
-		FPopupTransitionEffect(FPopupTransitionEffect::ContextMenu));
 }
