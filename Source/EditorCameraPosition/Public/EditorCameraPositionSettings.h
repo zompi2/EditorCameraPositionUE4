@@ -34,16 +34,16 @@ public:
 	FText GetSectionDescription() const override;
 	// UDeveloperSettings implementation
 
-	UPROPERTY(config, EditAnywhere)
+	UPROPERTY(config, EditAnywhere, Category = "Editor Camera Position")
 	bool bEnableEditorCameraPosition = true;
 
-	UPROPERTY(config, EditAnywhere)
+	UPROPERTY(config, EditAnywhere, Category = "Editor Camera Position")
 	bool bEnableEditorCameraRotation = true;
 
-	UPROPERTY(config, EditAnywhere)
+	UPROPERTY(config, EditAnywhere, Category = "Editor Camera Position")
 	EEditorCameraPositionTruncType CameraPositionTrunc = EEditorCameraPositionTruncType::TwoDecimals;
 
-	UPROPERTY(config, EditAnywhere)
+	UPROPERTY(config, EditAnywhere, Category = "Editor Camera Position")
 	EEditorCameraPositionTruncType CameraRotationTrunc = EEditorCameraPositionTruncType::TwoDecimals;
 
 private:
