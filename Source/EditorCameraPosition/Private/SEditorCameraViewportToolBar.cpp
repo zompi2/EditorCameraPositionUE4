@@ -12,6 +12,9 @@ void SEditorCameraViewportToolBar::Construct(const FArguments& Args)
 		.WidthOverride(256)
 		.HeightOverride(0)
 		.VAlign(VAlign_Top)
+#if (ENGINE_MAJOR_VERSION == 4)
+		.Padding(FMargin(0.f, -24.f, 0.f, 0.f))
+#endif
 		[
 			SNew(SVerticalBox)
 				+SVerticalBox::Slot()

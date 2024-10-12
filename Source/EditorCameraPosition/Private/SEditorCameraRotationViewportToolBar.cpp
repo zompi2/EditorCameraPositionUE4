@@ -15,7 +15,9 @@ void SEditorCameraRotationViewportToolBar::Construct(const FArguments& Args)
 			.AllowResponsiveLayout(true)
 #endif
 			.AllowSpin(true)
-			.SpinDelta(1)
+#if (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 4)
+			.SpinDelta(1.f)
+#endif
 			.Roll(Args._Roll)
 			.Pitch(Args._Pitch)
 			.Yaw(Args._Yaw)
