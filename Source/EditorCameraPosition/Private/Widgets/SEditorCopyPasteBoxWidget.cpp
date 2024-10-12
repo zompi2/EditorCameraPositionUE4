@@ -1,6 +1,6 @@
 // Copyright (c) 2024 Damian Nowakowski. All rights reserved.
 
-#include "SEditorCopyPasteBoxWidget.h"
+#include "Widgets/SEditorCopyPasteBoxWidget.h"
 
 FReply SEditorCopyPasteBoxWidget::OnMouseButtonDown(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent)
 {

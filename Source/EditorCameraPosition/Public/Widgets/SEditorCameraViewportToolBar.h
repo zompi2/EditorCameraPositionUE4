@@ -3,7 +3,7 @@
 #pragma once
 
 #include "Editor/UnrealEd/Public/SViewportToolBar.h"
-#include "EditorCameraPositionWorldCoordsType.h"
+#include "EditorCameraPositionTypes.h"
 
 class EDITORCAMERAPOSITION_API SEditorCameraViewportToolBar : public SViewportToolBar
 {

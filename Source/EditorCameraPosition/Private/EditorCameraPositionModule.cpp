@@ -5,8 +5,7 @@
 #include "EditorCameraPositionSettings.h"
 #include "EditorCameraPositionUtils.h"
 #include "EditorCameraPositionTypes.h"
-#include "SEditorCameraPositionViewportToolBar.h"
-#include "SEditorCameraViewportToolBar.h"
+#include "Widgets/SEditorCameraViewportToolBar.h"
 
 #include "Editor.h"
 #include "LevelEditor.h"

@@ -3,7 +3,7 @@
 #pragma once
 
 #include "Widgets/Layout/SBox.h"
-#include "EditorCameraPositionWorldCoordsType.h"
+#include "EditorCameraPositionTypes.h"
 
 class EDITORCAMERAPOSITION_API SEditorCopyPasteBoxWidget : public SBox
 {

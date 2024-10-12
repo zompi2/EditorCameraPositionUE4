@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
-#include "EditorCameraPositionWorldCoordsType.h"
+#include "EditorCameraPositionTypes.h"
 
 class EDITORCAMERAPOSITION_API FEditorCameraPositionModule : public IModuleInterface
 {
