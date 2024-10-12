@@ -1,36 +1,8 @@
 // Copyright (c) 2024 Damian Nowakowski. All rights reserved.
 
-#include "SEditorCameraPositionViewportToolBar.h"
+#include "Widgets/SEditorCopyPasteBoxWidget.h"
 
-void SEditorCameraPositionViewportToolBar::Construct(const FArguments& Args)
-{
-	OnCopy = Args._OnCopy;
-	OnPaste = Args._OnPaste;
-
-	ChildSlot
-	[
-		SNew(SBox)
-		.WidthOverride(256)
-		.VAlign(VAlign_Center)
-		[
-			SNew(VectorInputBoxType)
-			.bColorAxisLabels(true)
-#if (ENGINE_MAJOR_VERSION == 4)
-			.AllowResponsiveLayout(true)
-#endif
-			.AllowSpin(true)
-			.SpinDelta(1)
-			.X(Args._X)
-			.Y(Args._Y)
-			.Z(Args._Z)
-			.OnXChanged(Args._OnXChanged)
-			.OnYChanged(Args._OnYChanged)
-			.OnZChanged(Args._OnZChanged)
-		]
-	];
-}
-
-FReply SEditorCameraPositionViewportToolBar::OnMouseButtonDown(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent)
+FReply SEditorCopyPasteBoxWidget::OnMouseButtonDown(const FGeometry& MyGeometry, const FPointerEvent& MouseEvent)
 {
 	if (MouseEvent.GetEffectingButton() == EKeys::RightMouseButton)
 	{
@@ -40,7 +12,7 @@ FReply SEditorCameraPositionViewportToolBar::OnMouseButtonDown(const FGeometry& 
 	return FReply::Unhandled();
 }
 
-void SEditorCameraPositionViewportToolBar::CreateContextMenu(const FVector2D& MousePosition)
+void SEditorCopyPasteBoxWidget::CreateContextMenu(const FVector2D& MousePosition)
 {
 	FUIAction CopyAction = FUIAction(FExecuteAction::CreateLambda([this]()
 	{

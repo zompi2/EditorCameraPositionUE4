@@ -1,3 +1,9 @@
+###### 1.1.0
+* Added option to show/modify/copy/paste the editor camera rotation as well.
+* Added settings in Editor Preferences for enabling/disabling editor camera position/rotation functions
+  and for changing the way the values are truncated.
+* GetEditorCameraRotation and SetEditorCameraRotation Blueprint functions for Editor Utility Blueprints added.
+
 ###### 1.0.6
 * GetEditorCameraPosition and SetEditorCameraPosition Blueprint functions for Editor Utility Blueprints added.
 

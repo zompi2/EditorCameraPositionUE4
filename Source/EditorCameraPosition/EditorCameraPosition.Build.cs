@@ -30,7 +30,8 @@ public class EditorCameraPosition : ModuleRules
 				"Projects",
 				"LevelEditor",
 				"ApplicationCore",
-				"ToolMenus"
+				"ToolMenus",
+				"DeveloperSettings"
 			}
 		);
 	}

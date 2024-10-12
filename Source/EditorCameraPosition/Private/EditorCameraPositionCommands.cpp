@@ -20,6 +20,7 @@ FEditorCameraPositionCommands::FEditorCameraPositionCommands()
 void FEditorCameraPositionCommands::RegisterCommands()
 {
 	UI_COMMAND(ToggleShowCameraPosWidget, "Toggle Camera Position", "Toggles if to show the camera position get/set toolbar in viewport.", EUserInterfaceActionType::ToggleButton, FInputChord(EModifierKey::Shift | EModifierKey::Alt, EKeys::C));
+	UI_COMMAND(ToggleShowCameraRotWidget, "Toggle Camera Rotation", "Toggles if to show the camera rotation get/set toolbar in viewport.", EUserInterfaceActionType::ToggleButton, FInputChord(EModifierKey::Shift | EModifierKey::Alt, EKeys::X));
 }
 
 #undef LOCTEXT_NAMESPACE
