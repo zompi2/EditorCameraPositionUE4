@@ -1,3 +1,6 @@
+###### 1.1.1
+* Updated uplugin to support FAB
+
 ###### 1.1.0
 * Added option to show/modify/copy/paste the editor camera rotation as well.
 * Added settings in Editor Preferences for enabling/disabling editor camera position/rotation functions

@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "1.1.0",
+	"VersionName": "1.1.1",
 	"FriendlyName": "EditorCameraPosition",
 	"Description": "Simple tool that displays and sets camera position in editor viewport",
 	"Category": "Cameras",
@@ -9,6 +9,7 @@
 	"CreatedByURL": "https://zompidev.blogspot.com",
 	"DocsURL": "https://github.com/zompi2/EditorCameraPositionUE4",
 	"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/9864b623739f4fbab30f4d877b137fc9",
+	"FabURL": "com.epicgames.launcher://ue/Fab/product/d18dfdcf-ef99-4751-bde8-1f652ce2b986",
 	"SupportURL": "mailto:zompi2@gmail.com",
 	"CanContainContent": false,
 	"IsBetaVersion": false,
