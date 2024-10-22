@@ -58,11 +58,11 @@ Yeah... I know... but for me it was annoying to do it every time I needed that s
 **Does it work for camera position and rotation when piloting actors?**  
 Yes it does!
 
-## Marketplace!
+## Fab
 
-This plugin can be downloaded from the Unreal Engine Marketplace! Here's **[the link to it](https://www.unrealengine.com/marketplace/en-US/product/9864b623739f4fbab30f4d877b137fc9).**  
-The version of this plugin on a marketplace is **1.0.6**.  
-Unreal Marketplace doesn't support plugins for UE4. For UE4.27 you can download the prebuilt plugin from **[here](https://github.com/zompi2/EditorCameraPositionUE4/raw/packs/Packs/EditorCameraPosition-4.27.zip).**
+This plugin can be downloaded from the Unreal Engine Fab! Here's **[the link to it](https://www.fab.com/listings/c7a13871-0671-45d5-971c-2f5b3d53d3c0).**  
+The version of this plugin on Fab is **1.1.1**.  
+If you want to download it for UE4.27 you can download the prebuilt plugin from **[here](https://github.com/zompi2/EditorCameraPositionUE4/raw/packs/Packs/EditorCameraPosition-4.27.zip).**
 
 ## Anything else?
 
