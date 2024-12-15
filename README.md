@@ -60,7 +60,7 @@ Yes it does!
 
 ## Fab
 
-This plugin can be downloaded from the Unreal Engine Fab! Here's **[the link to it](https://www.fab.com/listings/c7a13871-0671-45d5-971c-2f5b3d53d3c0).**  
+This plugin can be downloaded from the Unreal Engine Fab! Here's **[the link to it](https://www.fab.com/listings/13d27c05-5c95-46f2-a123-06891956049e).**  
 The version of this plugin on Fab is **1.1.1**.  
 If you want to download it for UE4.27 you can download the prebuilt plugin from **[here](https://github.com/zompi2/EditorCameraPositionUE4/raw/packs/Packs/EditorCameraPosition-4.27.zip).**
 
