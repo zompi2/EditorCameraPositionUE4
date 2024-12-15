@@ -4,7 +4,7 @@ This is a simple plugin for Unreal Engine that displays the camera position in t
 
 https://github.com/zompi2/EditorCameraPositionUE4/assets/7863125/f9744a1c-215a-43fc-a26f-2b529380d420
 
-It works on UE4.27, UE5.2, UE5.3 and UE5.4 (or at least I tested it on these versions)
+It works on UE4.27, UE5.2, UE5.3, UE5.4 and UE5.5 (or at least I tested it on these versions)
 
 ## Why is it useful?
 
