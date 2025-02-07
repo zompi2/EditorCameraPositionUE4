@@ -14,8 +14,6 @@ protected:
 	void StartupModule() override;
 	void ShutdownModule() override;
 
-	void OnPostEngineInit();
-
 	void AddViewportToolBarExtension();
 	void AddViewportCameraPositionOptionExtension();
 	void AddViewportCameraRotationOptionExtension();
@@ -74,6 +72,4 @@ private:
 #else
 	FDelegateHandle TickerHandle;
 #endif
-
-	FDelegateHandle OnPostEngineInitDelegateHandle;
 };

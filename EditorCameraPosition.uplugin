@@ -1,7 +1,7 @@
 {
 	"FileVersion": 3,
 	"Version": 1,
-	"VersionName": "1.1.1",
+	"VersionName": "1.1.2",
 	"FriendlyName": "EditorCameraPosition",
 	"Description": "Simple tool that displays and sets camera position in editor viewport",
 	"Category": "Cameras",
@@ -19,7 +19,7 @@
 		{
 			"Name": "EditorCameraPosition",
 			"Type": "Editor",
-			"LoadingPhase": "PreDefault",
+			"LoadingPhase": "PostEngineInit",
 			"PlatformAllowList": [
 				"Win64"
 			]

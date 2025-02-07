@@ -19,7 +19,14 @@ IMPLEMENT_MODULE(FEditorCameraPositionModule, EditorCameraPosition)
 void FEditorCameraPositionModule::StartupModule()
 {
 	FEditorCameraPositionCommands::Register();
-	OnPostEngineInitDelegateHandle = FCoreDelegates::OnPostEngineInit.AddRaw(this, &FEditorCameraPositionModule::OnPostEngineInit);
+
+	if ((IsRunningCommandlet() == false) && (IsRunningGame() == false) && FSlateApplication::IsInitialized())
+	{
+		RefreshToolbarVisibility();
+		AddViewportToolBarExtension();
+		AddViewportCameraPositionOptionExtension();
+		AddViewportCameraRotationOptionExtension();
+	}
 
 #if (ENGINE_MAJOR_VERSION == 5)
 	TickerHandle = FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateRaw(this, &FEditorCameraPositionModule::Tick), 0.0f);
@@ -35,19 +42,7 @@ void FEditorCameraPositionModule::ShutdownModule()
 #else
 	FTicker::GetCoreTicker().RemoveTicker(TickerHandle);
 #endif
-	FCoreDelegates::OnPostEngineInit.Remove(OnPostEngineInitDelegateHandle);
 	FEditorCameraPositionCommands::Unregister();
-}
-
-void FEditorCameraPositionModule::OnPostEngineInit()
-{
-	if ((IsRunningCommandlet() == false) && (IsRunningGame() == false) && FSlateApplication::IsInitialized())
-	{
-		RefreshToolbarVisibility();
-		AddViewportToolBarExtension();
-		AddViewportCameraPositionOptionExtension();
-		AddViewportCameraRotationOptionExtension();
-	}
 }
 
 void FEditorCameraPositionModule::AddViewportToolBarExtension()
