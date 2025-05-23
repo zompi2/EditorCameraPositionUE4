@@ -19,7 +19,14 @@ IMPLEMENT_MODULE(FEditorCameraPositionModule, EditorCameraPosition)
 void FEditorCameraPositionModule::StartupModule()
 {
 	FEditorCameraPositionCommands::Register();
-	OnPostEngineInitDelegateHandle = FCoreDelegates::OnPostEngineInit.AddRaw(this, &FEditorCameraPositionModule::OnPostEngineInit);
+
+	if ((IsRunningCommandlet() == false) && (IsRunningGame() == false) && FSlateApplication::IsInitialized())
+	{
+		RefreshToolbarVisibility();
+		AddViewportToolBarExtension();
+		AddViewportCameraPositionOptionExtension();
+		AddViewportCameraRotationOptionExtension();
+	}
 
 #if (ENGINE_MAJOR_VERSION == 5)
 	TickerHandle = FTSTicker::GetCoreTicker().AddTicker(FTickerDelegate::CreateRaw(this, &FEditorCameraPositionModule::Tick), 0.0f);
@@ -35,19 +42,7 @@ void FEditorCameraPositionModule::ShutdownModule()
 #else
 	FTicker::GetCoreTicker().RemoveTicker(TickerHandle);
 #endif
-	FCoreDelegates::OnPostEngineInit.Remove(OnPostEngineInitDelegateHandle);
 	FEditorCameraPositionCommands::Unregister();
-}
-
-void FEditorCameraPositionModule::OnPostEngineInit()
-{
-	if ((IsRunningCommandlet() == false) && (IsRunningGame() == false) && FSlateApplication::IsInitialized())
-	{
-		RefreshToolbarVisibility();
-		AddViewportToolBarExtension();
-		AddViewportCameraPositionOptionExtension();
-		AddViewportCameraRotationOptionExtension();
-	}
 }
 
 void FEditorCameraPositionModule::AddViewportToolBarExtension()
@@ -75,7 +70,11 @@ void FEditorCameraPositionModule::AddViewportToolBarExtension()
 void FEditorCameraPositionModule::AddViewportCameraPositionOptionExtension()
 {
 	TSharedPtr<FUICommandInfo> Command = FEditorCameraPositionCommands::Get().ToggleShowCameraPosWidget;
+#if ((ENGINE_MAJOR_VERSION == 5) && (ENGINE_MINOR_VERSION >= 6))
+	UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.ViewportToolbar.Camera");
+#else
 	UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.LevelViewportToolBar.Options");
+#endif
 	if (Menu)
 	{
 		FUIAction Action;
@@ -96,7 +95,11 @@ void FEditorCameraPositionModule::AddViewportCameraPositionOptionExtension()
 			return UEditorCameraPositionSettings::Get()->bEnableEditorCameraPosition;
 		});
 
+#if ((ENGINE_MAJOR_VERSION == 5) && (ENGINE_MINOR_VERSION >= 6))
+		FToolMenuSection& Section = Menu->FindOrAddSection("CameraOptions");
+#else
 		FToolMenuSection& Section = Menu->FindOrAddSection("LevelViewportViewportOptions2");
+#endif
 		Section.AddMenuEntry(Command);
 
 		if (FLevelEditorModule* LevelEditor = FModuleManager::LoadModulePtr<FLevelEditorModule>(TEXT("LevelEditor")))
@@ -110,7 +113,11 @@ void FEditorCameraPositionModule::AddViewportCameraPositionOptionExtension()
 void FEditorCameraPositionModule::AddViewportCameraRotationOptionExtension()
 {
 	TSharedPtr<FUICommandInfo> Command = FEditorCameraPositionCommands::Get().ToggleShowCameraRotWidget;
+#if ((ENGINE_MAJOR_VERSION == 5) && (ENGINE_MINOR_VERSION >= 6))
+	UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.ViewportToolbar.Camera");
+#else
 	UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.LevelViewportToolBar.Options");
+#endif
 	if (Menu)
 	{
 		FUIAction Action;
@@ -131,7 +138,11 @@ void FEditorCameraPositionModule::AddViewportCameraRotationOptionExtension()
 			return UEditorCameraPositionSettings::Get()->bEnableEditorCameraRotation;
 		});
 
+#if ((ENGINE_MAJOR_VERSION == 5) && (ENGINE_MINOR_VERSION >= 6))
+		FToolMenuSection& Section = Menu->FindOrAddSection("CameraOptions");
+#else
 		FToolMenuSection& Section = Menu->FindOrAddSection("LevelViewportViewportOptions2");
+#endif
 		Section.AddMenuEntry(Command);
 
 		if (FLevelEditorModule* LevelEditor = FModuleManager::LoadModulePtr<FLevelEditorModule>(TEXT("LevelEditor")))

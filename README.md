@@ -4,7 +4,7 @@ This is a simple plugin for Unreal Engine that displays the camera position in t
 
 https://github.com/zompi2/EditorCameraPositionUE4/assets/7863125/f9744a1c-215a-43fc-a26f-2b529380d420
 
-It works on UE4.27, UE5.2, UE5.3 and UE5.4 (or at least I tested it on these versions)
+It works on UE4.27, UE5.2, UE5.3, UE5.4 and UE5.5 (or at least I tested it on these versions)
 
 ## Why is it useful?
 
@@ -58,11 +58,11 @@ Yeah... I know... but for me it was annoying to do it every time I needed that s
 **Does it work for camera position and rotation when piloting actors?**  
 Yes it does!
 
-## Marketplace!
+## Fab
 
-This plugin can be downloaded from the Unreal Engine Marketplace! Here's **[the link to it](https://www.unrealengine.com/marketplace/en-US/product/9864b623739f4fbab30f4d877b137fc9).**  
-The version of this plugin on a marketplace is **1.0.6**.  
-Unreal Marketplace doesn't support plugins for UE4. For UE4.27 you can download the prebuilt plugin from **[here](https://github.com/zompi2/EditorCameraPositionUE4/raw/packs/Packs/EditorCameraPosition-4.27.zip).**
+This plugin can be downloaded from the Unreal Engine Fab! Here's **[the link to it](https://www.fab.com/listings/13d27c05-5c95-46f2-a123-06891956049e).**  
+The version of this plugin on Fab is **1.1.1**.  
+If you want to download it for UE4.27 you can download the prebuilt plugin from **[here](https://github.com/zompi2/EditorCameraPositionUE4/raw/packs/Packs/EditorCameraPosition-4.27.zip).**
 
 ## Anything else?
 
