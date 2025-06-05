@@ -13,10 +13,10 @@ If you don't want to build the plugin from the source you can get the prebuilt b
 | :--------- | :------------- | :--- |
 | 4.27       | 1.1.3          | [Zip](https://github.com/zompi2/EditorCameraPositionUE4/raw/packs/Packs/EditorCameraPosition-1.1.3-4.27-Prebuild.zip) |
 | 5.2        | 1.1.1          | [Fab](https://www.fab.com/listings/13d27c05-5c95-46f2-a123-06891956049e) |
-| 5.3        | 1.1.1          | [Fab](https://www.fab.com/listings/13d27c05-5c95-46f2-a123-06891956049e) |
-| 5.4        | 1.1.1          | [Fab](https://www.fab.com/listings/13d27c05-5c95-46f2-a123-06891956049e) |
-| 5.5        | 1.1.1          | [Fab](https://www.fab.com/listings/13d27c05-5c95-46f2-a123-06891956049e) |
-| 5.6        | comming soon   | comming soon |
+| 5.3        | 1.1.3          | [Fab](https://www.fab.com/listings/13d27c05-5c95-46f2-a123-06891956049e) |
+| 5.4        | 1.1.3          | [Fab](https://www.fab.com/listings/13d27c05-5c95-46f2-a123-06891956049e) |
+| 5.5        | 1.1.3          | [Fab](https://www.fab.com/listings/13d27c05-5c95-46f2-a123-06891956049e) |
+| 5.6        | 1.1.3          | [Fab](https://www.fab.com/listings/13d27c05-5c95-46f2-a123-06891956049e) |
 
 ## Why is it useful?
 
