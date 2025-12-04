@@ -17,6 +17,7 @@ If you don't want to build the plugin from the source you can get the prebuilt b
 | 5.4        | 1.1.3          | [Fab](https://www.fab.com/listings/13d27c05-5c95-46f2-a123-06891956049e) |
 | 5.5        | 1.1.3          | [Fab](https://www.fab.com/listings/13d27c05-5c95-46f2-a123-06891956049e) |
 | 5.6        | 1.1.3          | [Fab](https://www.fab.com/listings/13d27c05-5c95-46f2-a123-06891956049e) |
+| 5.7        | 1.1.3          | [Fab](https://www.fab.com/listings/13d27c05-5c95-46f2-a123-06891956049e) |
 
 ## Why is it useful?
 
