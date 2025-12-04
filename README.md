@@ -1,7 +1,7 @@
 # Editor Camera Position for Unreal Engine
 
 This is a simple plugin for Unreal Engine that displays the camera position in the editor's viewport. It can also set and copy-paste the camera position.  
-The plugin works on Unreal Engine: 4.27, 5.2, 5.3, 5.4, 5.5, 5.6.
+The plugin works on Unreal Engine: 4.27, 5.2-5.7.
 
 https://github.com/zompi2/EditorCameraPositionUE4/assets/7863125/f9744a1c-215a-43fc-a26f-2b529380d420
 
