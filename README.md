@@ -5,6 +5,9 @@ The plugin works on Unreal Engine: 4.27, 5.2-5.7.
 
 https://github.com/zompi2/EditorCameraPositionUE4/assets/7863125/f9744a1c-215a-43fc-a26f-2b529380d420
 
+> **Since UE 5.6 the "Toggle Camera Position/Rotation" checkboxes are under the "Perspective button"**  
+> <img width="323" height="630" alt="newcampos" src="https://github.com/user-attachments/assets/be150f0c-73b6-4f5c-a7eb-896c7fa6c618" />
+
 ## Plugin prebuilt binaries
 
 If you don't want to build the plugin from the source you can get the prebuilt binaries:
