@@ -1,4 +1,4 @@
-// Copyright (c) 2024 Damian Nowakowski. All rights reserved.
+// Copyright (c) 2026 Damian Nowakowski. All rights reserved.
 
 #include "Widgets/SEditorCameraViewportToolBar.h"
 #include "Widgets/SEditorCameraPositionViewportToolBar.h"
