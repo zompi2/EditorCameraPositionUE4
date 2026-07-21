@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "Modules/ModuleManager.h"
 #include "EditorCameraPositionTypes.h"
+#include "EditorCameraPositionEngineVersionComparsion.h"
 
 class EDITORCAMERAPOSITION_API FEditorCameraPositionModule : public IModuleInterface
 {
@@ -67,7 +68,7 @@ private:
 	bool bIsCamPosToolbarVisible = true;
 	bool bIsCamRotToolbarVisible = true;
 
-#if (ENGINE_MAJOR_VERSION == 5)
+#if UE_VERSION_NEWER_THAN_OR_EQUAL(5,0,0)
 	FTSTicker::FDelegateHandle TickerHandle;
 #else
 	FDelegateHandle TickerHandle;

@@ -1,6 +1,7 @@
 // Copyright (c) 2024 Damian Nowakowski. All rights reserved.
 
 #include "Widgets/SEditorCameraRotationViewportToolBar.h"
+#include "EditorCameraPositionEngineVersionComparsion.h"
 
 void SEditorCameraRotationViewportToolBar::Construct(const FArguments& Args)
 {
@@ -15,7 +16,7 @@ void SEditorCameraRotationViewportToolBar::Construct(const FArguments& Args)
 			.AllowResponsiveLayout(true)
 #endif
 			.AllowSpin(true)
-#if (ENGINE_MAJOR_VERSION == 5 && ENGINE_MINOR_VERSION >= 4)
+#if UE_VERSION_NEWER_THAN_OR_EQUAL(5,4,0)
 			.SpinDelta(1.f)
 #endif
 			.Roll(Args._Roll)

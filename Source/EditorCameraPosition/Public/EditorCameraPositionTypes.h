@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Runtime/Launch/Resources/Version.h"
+#include "EditorCameraPositionEngineVersionComparsion.h"
 #include "Widgets/Input/SVectorInputBox.h"
 #include "Widgets/Input/SRotatorInputBox.h"
 #include "EditorCameraPositionTypes.generated.h"
@@ -18,7 +18,7 @@ enum class EEditorCameraPositionTruncType
 
 DECLARE_DELEGATE(FOnCameraPosOrRotCopyPasteEvent);
 
-#if (ENGINE_MAJOR_VERSION == 5)
+#if UE_VERSION_NEWER_THAN_OR_EQUAL(5,0,0)
 	using VectorValueType = FVector::FReal;
 	using VectorInputBoxType = SNumericVectorInputBox<VectorValueType>;
 	using OnVectorValueChangedDelegateType = SNumericVectorInputBox<VectorValueType>::FOnNumericValueChanged;

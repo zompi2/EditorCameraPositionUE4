@@ -1,6 +1,7 @@
 // Copyright (c) 2024 Damian Nowakowski. All rights reserved.
 
 #include "Widgets/SEditorCameraPositionViewportToolBar.h"
+#include "EditorCameraPositionEngineVersionComparsion.h"
 
 void SEditorCameraPositionViewportToolBar::Construct(const FArguments& Args)
 {

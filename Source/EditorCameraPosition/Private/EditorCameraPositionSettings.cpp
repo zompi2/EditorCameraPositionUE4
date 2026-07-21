@@ -3,7 +3,7 @@
 #pragma once
 
 #include "EditorCameraPositionSettings.h"
-#include "Runtime/Launch/Resources/Version.h"
+#include "EditorCameraPositionEngineVersionComparsion.h"
 
 const UEditorCameraPositionSettings* UEditorCameraPositionSettings::Get()
 {
@@ -20,7 +20,7 @@ void UEditorCameraPositionSettings::SetIsCameraPositionToolBarEnabled(bool bInIs
 	UEditorCameraPositionSettings* Settings = GetMutableDefault<UEditorCameraPositionSettings>();
 	Settings->bIsCameraPositionToolBarEnabled = bInIsVisible;
 
-#if (ENGINE_MAJOR_VERSION == 5)
+#if UE_VERSION_NEWER_THAN_OR_EQUAL(5,0,0)
 	Settings->TryUpdateDefaultConfigFile();
 #else
 	Settings->UpdateDefaultConfigFile();
@@ -37,7 +37,7 @@ void UEditorCameraPositionSettings::SetIsCameraRotationToolBarEnabled(bool bInIs
 	UEditorCameraPositionSettings* Settings = GetMutableDefault<UEditorCameraPositionSettings>();
 	Settings->bIsCameraRotationToolBarEnabled = bInIsVisible;
 
-#if (ENGINE_MAJOR_VERSION == 5)
+#if UE_VERSION_NEWER_THAN_OR_EQUAL(5,0,0)
 	Settings->TryUpdateDefaultConfigFile();
 #else
 	Settings->UpdateDefaultConfigFile();
