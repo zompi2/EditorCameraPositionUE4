@@ -3,10 +3,11 @@
 This is a simple plugin for Unreal Engine that displays the camera position in the editor's viewport. It can also set and copy-paste the camera position.  
 The plugin works on Unreal Engine: 4.27, 5.2-5.8.
 
-https://github.com/zompi2/EditorCameraPositionUE4/assets/7863125/f9744a1c-215a-43fc-a26f-2b529380d420
+![](ReadmeImgs/334963356-f9744a1c-215a-43fc-a26f-2b529380d420.gif)
 
 > **Since UE 5.6 the "Toggle Camera Position/Rotation" checkboxes are under the "Perspective button"**  
-> <img width="323" height="630" alt="newcampos" src="https://github.com/user-attachments/assets/be150f0c-73b6-4f5c-a7eb-896c7fa6c618" />
+
+![](ReadmeImgs/523163411-be150f0c-73b6-4f5c-a7eb-896c7fa6c618.png)
 
 ## Plugin prebuilt binaries
 
@@ -33,30 +34,30 @@ It is also useful if you want to share a specific world coordinates to a teammat
 
 The plugin can also display and modify the camera rotation.
 
-![camrot1](https://github.com/user-attachments/assets/ad91016f-5d2b-4e0c-81bb-8af2a901efc4)
-![camrot2](https://github.com/user-attachments/assets/96603b3b-da49-4e28-b7c1-0c36293dd601)
+![](ReadmeImgs/375981446-ad91016f-5d2b-4e0c-81bb-8af2a901efc4.jpg)
+![](ReadmeImgs/375981445-96603b3b-da49-4e28-b7c1-0c36293dd601.jpg)
 
 ## Blueprint nodes
 
 If you need a position or rotation of the editor viewport's camera in your Blueprint Utility Widget there are Blueprint nodes that can help you with it:
 
 #### Get Editor Camera Position
-![geteditorcameraposbp](https://github.com/user-attachments/assets/c94d94f3-14aa-4780-8ec3-5cf5c0594ae7)
+![](ReadmeImgs/352716288-c94d94f3-14aa-4780-8ec3-5cf5c0594ae7.jpg)
 
 #### Set Editor Camera Position
-![seteditorcameraposition](https://github.com/user-attachments/assets/2ab1834e-f33c-4133-acc1-8db642d17110)
+![](ReadmeImgs/352716292-2ab1834e-f33c-4133-acc1-8db642d17110.jpg)
 
 #### Get Editor Camera Rotation
-![camrot3](https://github.com/user-attachments/assets/0480b7db-88cd-4904-991b-b6c4429a9812)
+![](ReadmeImgs/375981614-0480b7db-88cd-4904-991b-b6c4429a9812.jpg)
 
 #### Set Editor Camera Rotation
-![camrot4](https://github.com/user-attachments/assets/089c591c-3c6b-4f98-abe4-f4a40a21dcb3)
+![](ReadmeImgs/375981618-089c591c-3c6b-4f98-abe4-f4a40a21dcb3.jpg)
 
 ## Settings
 
 You can find few settings inside the `Edit -> Editor Preferences -> Plugins -> Editor Camera Position` section.
 
-![camcam](https://github.com/user-attachments/assets/b6d7befa-1909-453f-ab99-ea956c175086)
+![](ReadmeImgs/375984552-b6d7befa-1909-453f-ab99-ea956c175086.jpg)
 
 * Enable Editor Camera Position/Rotation - should the option to show camera position or rotation in the editor be even possible?
 * Camera Position/Rotation Trunc - describes how to truncate the values of camera position and rotation when moving the camera in the editor. Possible values:
